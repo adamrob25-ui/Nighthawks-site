@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Statistics | Merseyside Nighthawks</title>
+    <title>Offence Leaderboards | Merseyside Nighthawks</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome for grid/sport icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-black text-white font-sans selection:bg-red-600 selection:text-white">
 
-    <!-- MINIMALIST HEADER -->
+    <!-- NAVIGATION HEADER -->
     <header class="bg-neutral-950 border-b border-neutral-800 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 group">
@@ -26,190 +26,179 @@
         </div>
     </header>
 
-    <!-- STATS DASHBOARD CONTAINER -->
-    <main class="container mx-auto px-6 py-12 max-w-5xl min-h-[75vh] space-y-8">
+    <!-- MAIN STATISTICS CONTAINER -->
+    <main class="container mx-auto px-6 py-12 max-w-6xl space-y-16">
         
-       <!-- STATS DASHBOARD CONTAINER -->
-<main class="container mx-auto px-6 py-12 max-w-6xl min-h-[75vh] space-y-12">
-    
-    <!-- Section Title & Toggles -->
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b-2 border-neutral-800 pb-4 gap-4">
+        <!-- TITLE BANNER -->
         <div>
-            <h1 class="text-4xl font-black uppercase tracking-tight">
-                2025 Player <span class="text-red-500">Statistics</span>
+            <span class="text-red-500 text-xs font-bold uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded border border-red-500/20">
+                Stat Center
+            </span>
+            <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tight mt-3">
+                2026 Offence <span class="text-red-500">Leaderboards</span>
             </h1>
-            <p class="text-sm text-neutral-400 mt-1">Live performance metrics streaming directly from the coaching desk.</p>
+            <p class="text-neutral-400 text-sm mt-1">Live player production metrics synchronized with team tracking documents.</p>
         </div>
-        
-        <!-- Toggle Controls -->
-        <div class="inline-flex bg-neutral-900 p-1 rounded-lg border border-neutral-800">
-            <button id="btn-offense" onclick="switchStats('offense')" class="px-5 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer">
-                Offense
-            </button>
-            <button id="btn-defense" onclick="switchStats('defense')" class="px-5 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer">
-                Defense
-            </button>
-        </div>
-    </div>
 
-    <!-- OFFENSIVE SUB-TABLES WRAPPER -->
-    <div id="wrapper-offense" class="space-y-12">
-        
-        <!-- 1. PASSING STATS -->
-        <div class="space-y-3">
-            <h3 class="text-xl font-black uppercase tracking-wider text-neutral-300 flex items-center gap-2">
-                <i class="fa-solid fa-cloud-arrow-up text-red-500 text-sm"></i> Passing Leaderboard
-            </h3>
-            <div class="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden shadow-2xl">
+        <!-- 1. PASSING STATS SECTION -->
+        <section class="space-y-4">
+            <div class="flex items-center space-x-3 border-b-2 border-neutral-800 pb-2">
+                <i class="fa-solid fa-cloud-arrow-up text-red-500 text-lg"></i>
+                <h2 class="text-2xl font-black uppercase tracking-tight">Passing Statistics</h2>
+            </div>
+            <div class="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
                 <div class="overflow-x-auto">
                     <table id="table-passing" class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-neutral-900 text-neutral-400 text-xs uppercase tracking-wider border-b border-neutral-800">
-                                <th class="py-4 px-4">Name</th>
-                                <th class="py-4 px-3 text-center">GP</th>
-                                <th class="py-4 px-3 text-right">Cmp</th>
-                                <th class="py-4 px-3 text-right">Att</th>
-                                <th class="py-4 px-3 text-right">Cmp%</th>
-                                <th class="py-4 px-3 text-right">Yds</th>
-                                <th class="py-4 px-3 text-right">Yds/G</th>
-                                <th class="py-4 px-3 text-right">Lng</th>
-                                <th class="py-4 px-3 text-right text-red-500">TD</th>
-                                <th class="py-4 px-3 text-right">Int</th>
-                                <th class="py-4 px-3 text-right">Sack</th>
+                                <th class="py-4 px-4 font-bold text-neutral-200">Name</th>
+                                <th class="py-4 px-2 text-center">GP</th>
+                                <th class="py-4 px-2 text-right">Cmp</th>
+                                <th class="py-4 px-2 text-right">Att</th>
+                                <th class="py-4 px-2 text-right">Cmp%</th>
+                                <th class="py-4 px-2 text-right">Yds</th>
+                                <th class="py-4 px-2 text-right">Yds/G</th>
+                                <th class="py-4 px-2 text-right">Lng</th>
+                                <th class="py-4 px-2 text-right text-red-500 font-bold">TD</th>
+                                <th class="py-4 px-2 text-right">Int</th>
+                                <th class="py-4 px-2 text-right">Sack</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                            <tr><td colspan="11" class="py-6 text-center text-neutral-500">Loading passing stats...</td></tr>
+                            <tr><td colspan="11" class="py-8 text-center text-neutral-600 font-mono">Importing passing document numbers...</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- 2. RUSHING STATS -->
-        <div class="space-y-3">
-            <h3 class="text-xl font-black uppercase tracking-wider text-neutral-300 flex items-center gap-2">
-                <i class="fa-solid fa-person-running text-red-500 text-sm"></i> Rushing Leaderboard
-            </h3>
-            <div class="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden shadow-2xl">
+        <!-- 2. RUSHING STATS SECTION -->
+        <section class="space-y-4">
+            <div class="flex items-center space-x-3 border-b-2 border-neutral-800 pb-2">
+                <i class="fa-solid fa-person-running text-red-500 text-lg"></i>
+                <h2 class="text-2xl font-black uppercase tracking-tight">Rushing Statistics</h2>
+            </div>
+            <div class="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
                 <div class="overflow-x-auto">
                     <table id="table-rushing" class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-neutral-900 text-neutral-400 text-xs uppercase tracking-wider border-b border-neutral-800">
-                                <th class="py-4 px-4">Name</th>
-                                <th class="py-4 px-3 text-center">GP</th>
-                                <th class="py-4 px-3 text-right">Car</th>
-                                <th class="py-4 px-3 text-right">Yds</th>
-                                <th class="py-4 px-3 text-right">Yds/Car</th>
-                                <th class="py-4 px-3 text-right">Lng</th>
-                                <th class="py-4 px-3 text-right">Big</th>
-                                <th class="py-4 px-3 text-right text-red-500">TD</th>
-                                <th class="py-4 px-3 text-right">Yds/G</th>
-                                <th class="py-4 px-3 text-right">Fum</th>
+                                <th class="py-4 px-4 font-bold text-neutral-200">Name</th>
+                                <th class="py-4 px-2 text-center">GP</th>
+                                <th class="py-4 px-2 text-right">Car</th>
+                                <th class="py-4 px-2 text-right">Yds</th>
+                                <th class="py-4 px-2 text-right">Yds/Car</th>
+                                <th class="py-4 px-2 text-right">Lng</th>
+                                <th class="py-4 px-2 text-right">Big</th>
+                                <th class="py-4 px-2 text-right text-red-500 font-bold">TD</th>
+                                <th class="py-4 px-2 text-right">Yds/G</th>
+                                <th class="py-4 px-2 text-right">Fum</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                            <tr><td colspan="10" class="py-6 text-center text-neutral-500">Loading rushing stats...</td></tr>
+                            <tr><td colspan="10" class="py-8 text-center text-neutral-600 font-mono">Importing rushing document numbers...</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- 3. RECEIVING STATS -->
-        <div class="space-y-3">
-            <h3 class="text-xl font-black uppercase tracking-wider text-neutral-300 flex items-center gap-2">
-                <i class="fa-solid fa-hands-football text-red-500 text-sm"></i> Receiving Leaderboard
-            </h3>
-            <div class="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden shadow-2xl">
+        <!-- 3. RECEIVING STATS SECTION -->
+        <section class="space-y-4">
+            <div class="flex items-center space-x-3 border-b-2 border-neutral-800 pb-2">
+                <i class="fa-solid fa-hands-football text-red-500 text-lg"></i>
+                <h2 class="text-2xl font-black uppercase tracking-tight">Receiving Statistics</h2>
+            </div>
+            <div class="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden shadow-xl">
                 <div class="overflow-x-auto">
                     <table id="table-receiving" class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-neutral-900 text-neutral-400 text-xs uppercase tracking-wider border-b border-neutral-800">
-                                <th class="py-4 px-4">Name</th>
-                                <th class="py-4 px-3 text-center">GP</th>
-                                <th class="py-4 px-3 text-right">Rec</th>
-                                <th class="py-4 px-3 text-right">Yds</th>
-                                <th class="py-4 px-3 text-right">Yds/Rec</th>
-                                <th class="py-4 px-3 text-right text-red-500">TD</th>
-                                <th class="py-4 px-3 text-right">Lng</th>
-                                <th class="py-4 px-3 text-right">Big</th>
-                                <th class="py-4 px-3 text-right">Yds/G</th>
-                                <th class="py-4 px-3 text-right">Fum</th>
+                                <th class="py-4 px-4 font-bold text-neutral-200">Name</th>
+                                <th class="py-4 px-2 text-center">GP</th>
+                                <th class="py-4 px-2 text-right">Rec</th>
+                                <th class="py-4 px-2 text-right">Yds</th>
+                                <th class="py-4 px-2 text-right">Yds/Rec</th>
+                                <th class="py-4 px-2 text-right text-red-500 font-bold">TD</th>
+                                <th class="py-4 px-2 text-right">Lng</th>
+                                <th class="py-4 px-2 text-right">Big</th>
+                                <th class="py-4 px-2 text-right">Yds/G</th>
+                                <th class="py-4 px-2 text-right">Fum</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                            <tr><td colspan="10" class="py-6 text-center text-neutral-500">Loading receiving stats...</td></tr>
+                            <tr><td colspan="10" class="py-8 text-center text-neutral-600 font-mono">Importing receiving document numbers...</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
-</main>
-    </div>
+        </section>
 
+    </main>
 
-    <!-- SIMPLE FOOTER -->
-    <footer class="bg-neutral-950 border-t border-neutral-800 py-6 text-center text-xs text-neutral-600">
-        &copy; 2026 Merseyside Nighthawks. Stats dynamically synchronized via Google Sheets.
+    <!-- FOOTER -->
+    <footer class="bg-neutral-950 border-t border-neutral-800 text-neutral-600 py-8 text-center text-xs font-mono mt-24">
+        &copy; 2026 Merseyside Nighthawks. Operational Data Feeds Driven by Google Sheets.
     </footer>
 
-    <!-- LIVE SHEET DATA EXTRACTION & SWITCHING LOGIC -->
+    <!-- LIGHTWEIGHT SCRIPT EXTRACTION CODE -->
     <script>
-        // ⚠️ REPLACE THESE WITH YOUR PUBLISHED LIVE CSV LINKS FROM GOOGLE SHEETS
-        const OFFENSE_CSV_URL = "PASTE_YOUR_OFFENSE_CSV_LINK_HERE";
-        const DEFENSE_CSV_URL = "PASTE_YOUR_DEFENSE_CSV_LINK_HERE";
+        // ⚠️ REPLACE THESE PLACES WITH YOUR INDIVIDUAL COPIED CSV LINKS FROM EACH TAB:
+        const PASSING_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1956861491&single=true&output=csv";
+        const RUSHING_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=16762642&single=true&output=csv";
+        const RECEIVING_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=0&single=true&output=csv";
 
         window.addEventListener('DOMContentLoaded', () => {
-            fetchAndBuildTable(OFFENSE_CSV_URL, 'table-offense');
-            fetchAndBuildTable(DEFENSE_CSV_URL, 'table-defense');
+            // Fires data load functions immediately upon loading the window
+            loadSpreadsheetSection(PASSING_CSV, 'table-passing', 11);
+            loadSpreadsheetSection(RUSHING_CSV, 'table-rushing', 10);
+            loadSpreadsheetSection(RECEIVING_CSV, 'table-receiving', 10);
         });
 
-        async function fetchAndBuildTable(url, tableId) {
+        async function loadSpreadsheetSection(url, tableId, columnCount) {
             try {
-                const response = await fetch(url);
-                const data = await response.text();
-                const rows = data.split('\n').map(row => row.split(','));
-                const tbody = document.getElementById(tableId).querySelector('tbody');
-                tbody.innerHTML = '';
+                const res = await fetch(url);
+                const rawCsvText = await res.text();
+                
+                // Parses spreadsheet breaks cleanly row by row
+                const lines = rawCsvText.split('\n').map(line => line.split(','));
+                const targetBody = document.getElementById(tableId).querySelector('tbody');
+                targetBody.innerHTML = ''; 
 
-                for (let i = 1; i < rows.length; i++) {
-                    const columns = rows[i];
-                    if (!columns[0] || columns[0].trim() === "") continue;
+                // Loops over lines, skips line 0 (headers), maps values directly to the cells
+                for (let i = 1; i < lines.length; i++) {
+                    const stats = lines[i];
+                    if (!stats[0] || stats[0].trim() === "") continue; // Skips rows that have an empty name column
 
                     const tr = document.createElement('tr');
-                    tr.className = "hover:bg-neutral-900/50 transition border-b border-neutral-900/40";
-                    tr.innerHTML = `
-                        <td class="py-4 px-6 font-bold text-white">${columns[0] || ''}</td>
-                        <td class="py-4 px-6 text-neutral-400">${columns[1] || ''}</td>
-                        <td class="py-4 px-6 text-right font-mono text-neutral-300">${columns[2] || '0'}</td>
-                        <td class="py-4 px-6 text-right font-mono text-neutral-300">${columns[3] || '0'}</td>
-                        <td class="py-4 px-6 text-right font-mono text-neutral-300">${columns[4] || '0'}</td>
-                        <td class="py-4 px-6 text-right font-mono font-bold text-red-500">${columns[5] || '0'}</td>
-                    `;
-                    tbody.appendChild(tr);
+                    tr.className = "hover:bg-neutral-900/40 transition duration-150 border-b border-neutral-900/60";
+
+                    // Creates player column name block
+                    let cellsHTML = `<td class="py-3.5 px-4 font-bold text-white whitespace-nowrap">${stats[0].trim()}</td>`;
+
+                    // Evaluates and renders trailing data columns over remaining headers
+                    for (let j = 1; j < columnCount; j++) {
+                        let dataValue = stats[j] ? stats[j].trim() : '0';
+                        let cssAlign = (j === 1) ? 'text-center' : 'text-right';
+                        
+                        // Bold the major score columns (TD columns) to separate visually from side counts
+                        let styleClass = "text-neutral-300 font-mono";
+                        if ((tableId === 'table-passing' && j === 8) || 
+                            (tableId === 'table-rushing' && j === 7) || 
+                            (tableId === 'table-receiving' && j === 5)) {
+                            styleClass = "text-red-500 font-bold font-mono";
+                        }
+
+                        cellsHTML += `<td class="py-3.5 px-2 ${cssAlign} ${styleClass}">${dataValue}</td>`;
+                    }
+
+                    tr.innerHTML = cellsHTML;
+                    targetBody.appendChild(tr);
                 }
-            } catch (error) {
-                console.error("Error loading stats data:", error);
-            }
-        }
-
-        function switchStats(type) {
-            const tabOffense = document.getElementById('table-offense');
-            const tabDefense = document.getElementById('table-defense');
-            const btnOffense = document.getElementById('btn-offense');
-            const btnDefense = document.getElementById('btn-defense');
-
-            if (type === 'offense') {
-                tabOffense.classList.remove('hidden');
-                tabDefense.classList.add('hidden');
-                btnOffense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer";
-                btnDefense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer";
-            } else {
-                tabOffense.classList.add('hidden');
-                tabDefense.classList.remove('hidden');
-                btnOffense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer";
-                btnDefense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer";
+            } catch (err) {
+                console.error(`Failed to ingest CSV data stream for: ${tableId}`, err);
+                const tbody = document.getElementById(tableId).querySelector('tbody');
+                tbody.innerHTML = `<tr><td colspan="${columnCount}" class="py-6 text-center text-red-500 font-mono font-bold">Error loading metrics link. Make sure sheet is published to web.</td></tr>`;
             }
         }
     </script>
