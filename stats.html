@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Statistics | Merseyside Nighthawks</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-black text-white font-sans selection:bg-red-600 selection:text-white">
+
+    <!-- MINIMALIST HEADER -->
+    <header class="bg-neutral-950 border-b border-neutral-800 sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center space-x-3 group">
+                <div class="bg-red-600 text-white p-2 font-black tracking-tighter text-xl">MN</div>
+                <span class="font-black text-xl tracking-wider uppercase hidden sm:block">
+                    Merseyside <span class="text-red-600">Nighthawks</span>
+                </span>
+            </a>
+            <a href="index.html" class="text-sm font-bold uppercase tracking-wider border border-neutral-700 hover:border-red-600 hover:text-red-500 px-4 py-2 rounded transition">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back To Home
+            </a>
+        </div>
+    </header>
+
+    <!-- STATS DASHBOARD CONTAINER -->
+    <main class="container mx-auto px-6 py-12 max-w-5xl min-h-[75vh] space-y-8">
+        
+        <!-- Section Title & Toggles -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between border-b-2 border-neutral-800 pb-4 gap-4">
+            <div>
+                <h1 class="text-4xl font-black uppercase tracking-tight">
+                    2026 Player <span class="text-red-500">Statistics</span>
+                </h1>
+                <p class="text-sm text-neutral-400 mt-1">Live performance metrics streaming directly from the coaching desk.</p>
+            </div>
+            
+            <!-- Toggle Controls -->
+            <div class="inline-flex bg-neutral-900 p-1 rounded-lg border border-neutral-800">
+                <button id="btn-offense" onclick="switchStats('offense')" class="px-5 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer">
+                    Offense
+                </button>
+                <button id="btn-defense" onclick="switchStats('defense')" class="px-5 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer">
+                    Defense
+                </button>
+            </div>
+        </div>
+
+        <!-- Table Display Container -->
+        <div class="bg-neutral-950 border border-neutral-800 rounded-xl overflow-hidden shadow-2xl">
+            <div class="overflow-x-auto">
+                
+                <!-- OFFENSIVE TABLE -->
+                <table id="table-offense" class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-neutral-900 text-neutral-400 text-xs uppercase tracking-wider border-b border-neutral-800">
+                            <th class="py-4 px-6">Player</th>
+                            <th class="py-4 px-6">Pos</th>
+                            <th class="py-4 px-6 text-right">Passing Yds</th>
+                            <th class="py-4 px-6 text-right">Rushing Yds</th>
+                            <th class="py-4 px-6 text-right">Rec Yds</th>
+                            <th class="py-4 px-6 text-right text-red-500">Total TDs</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-neutral-900 text-sm font-medium">
+                        <!-- Google Sheets data dynamically injects here -->
+                        <tr><td colspan="6" class="py-8 text-center text-neutral-500">Loading offensive data...</td></tr>
+                    </tbody>
+                </table>
+
+                <!-- DEFENSIVE TABLE (Hidden by Default) -->
+                <table id="table-defense" class="w-full text-left border-collapse hidden">
+                    <thead>
+                        <tr class="bg-neutral-900 text-neutral-400 text-xs uppercase tracking-wider border-b border-neutral-800">
+                            <th class="py-4 px-6">Player</th>
+                            <th class="py-4 px-6">Pos</th>
+                            <th class="py-4 px-6 text-right">Tackles</th>
+                            <th class="py-4 px-6 text-right text-red-500">Sacks</th>
+                            <th class="py-4 px-6 text-right">TFL</th>
+                            <th class="py-4 px-6 text-right">INTs</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-neutral-900 text-sm font-medium">
+                        <!-- Google Sheets data dynamically injects here -->
+                        <tr><td colspan="6" class="py-8 text-center text-neutral-500">Loading defensive data...</td></tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- SIMPLE FOOTER -->
+    <footer class="bg-neutral-950 border-t border-neutral-800 py-6 text-center text-xs text-neutral-600">
+        &copy; 2026 Merseyside Nighthawks. Stats dynamically synchronized via Google Sheets.
+    </footer>
+
+    <!-- LIVE SHEET DATA EXTRACTION & SWITCHING LOGIC -->
+    <script>
+        // ⚠️ REPLACE THESE WITH YOUR PUBLISHED LIVE CSV LINKS FROM GOOGLE SHEETS
+        const OFFENSE_CSV_URL = "PASTE_YOUR_OFFENSE_CSV_LINK_HERE";
+        const DEFENSE_CSV_URL = "PASTE_YOUR_DEFENSE_CSV_LINK_HERE";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchAndBuildTable(OFFENSE_CSV_URL, 'table-offense');
+            fetchAndBuildTable(DEFENSE_CSV_URL, 'table-defense');
+        });
+
+        async function fetchAndBuildTable(url, tableId) {
+            try {
+                const response = await fetch(url);
+                const data = await response.text();
+                const rows = data.split('\n').map(row => row.split(','));
+                const tbody = document.getElementById(tableId).querySelector('tbody');
+                tbody.innerHTML = '';
+
+                for (let i = 1; i < rows.length; i++) {
+                    const columns = rows[i];
+                    if (!columns[0] || columns[0].trim() === "") continue;
+
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-neutral-900/50 transition border-b border-neutral-900/40";
+                    tr.innerHTML = `
+                        <td class="py-4 px-6 font-bold text-white">${columns[0] || ''}</td>
+                        <td class="py-4 px-6 text-neutral-400">${columns[1] || ''}</td>
+                        <td class="py-4 px-6 text-right font-mono text-neutral-300">${columns[2] || '0'}</td>
+                        <td class="py-4 px-6 text-right font-mono text-neutral-300">${columns[3] || '0'}</td>
+                        <td class="py-4 px-6 text-right font-mono text-neutral-300">${columns[4] || '0'}</td>
+                        <td class="py-4 px-6 text-right font-mono font-bold text-red-500">${columns[5] || '0'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                }
+            } catch (error) {
+                console.error("Error loading stats data:", error);
+            }
+        }
+
+        function switchStats(type) {
+            const tabOffense = document.getElementById('table-offense');
+            const tabDefense = document.getElementById('table-defense');
+            const btnOffense = document.getElementById('btn-offense');
+            const btnDefense = document.getElementById('btn-defense');
+
+            if (type === 'offense') {
+                tabOffense.classList.remove('hidden');
+                tabDefense.classList.add('hidden');
+                btnOffense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer";
+                btnDefense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer";
+            } else {
+                tabOffense.classList.add('hidden');
+                tabDefense.classList.remove('hidden');
+                btnOffense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer";
+                btnDefense.className = "px-4 py-2 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer";
+            }
+        }
+    </script>
+</body>
+</html>
