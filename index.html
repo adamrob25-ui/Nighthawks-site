@@ -87,64 +87,86 @@
             </div>
         </section>
 
-        <!-- LATEST NEWS -->
-        <section id="news" class="space-y-8">
-            <h2 class="text-3xl font-black uppercase tracking-tight border-b-2 border-red-600 pb-2 inline-block">
-                Latest News
+<!-- LATEST NEWS WITH CAROUSEL -->
+<section id="news" class="space-y-6 scroll-mt-24">
+    <div class="flex items-end justify-between border-b-2 border-neutral-800 pb-4">
+        <div>
+            <h2 class="text-3xl font-black uppercase tracking-tight">
+                Latest <span class="text-red-500">News</span>
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <article class="bg-neutral-950 rounded-lg overflow-hidden border border-neutral-800 hover:border-neutral-700 transition flex flex-col justify-between">
-                    <div>
-                        <img src="https://lh3.googleusercontent.com/d/1-C3Q-uXRXMsziXEHQjQb-99u_AZtfPii" alt="Training" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition duration-300">
-                        <div class="p-6 space-y-2">
-                            <span class="text-red-500 text-xs font-bold uppercase tracking-wider">Team Update</span>
-                            <h3 class="text-xl font-bold leading-tight hover:text-red-400 transition">
-                                <a href="#">New Home Ground!</a>
-                            </h3>
-                            <p class="text-neutral-400 text-sm line-clamp-3">
-                                The Nighthawks are proud to announce that our new home ground for the rest of the season will be Lymm Rugby Football Club, WA13 DA5.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0 text-xs text-neutral-500">June 2, 2026</div>
-                </article>
+            <p class="text-sm text-neutral-400 mt-1">Updates from around the club.</p>
+        </div>
+        
+        <!-- Carousel Arrow Buttons -->
+        <div class="flex space-x-2">
+            <button onclick="scrollNews('left')" class="w-10 h-10 rounded-md bg-neutral-900 border border-neutral-800 hover:border-red-600 hover:text-red-500 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-chevron-left text-sm"></i>
+            </button>
+            <button onclick="scrollNews('right')" class="w-10 h-10 rounded-md bg-neutral-900 border border-neutral-800 hover:border-red-600 hover:text-red-500 flex items-center justify-center transition cursor-pointer">
+                <i class="fa-solid fa-chevron-right text-sm"></i>
+            </button>
+        </div>
+    </div>
 
-                <!-- Article 2 -->
-                <article class="bg-neutral-950 rounded-lg overflow-hidden border border-neutral-800 hover:border-neutral-700 transition flex flex-col justify-between">
-                    <div>
-                        <img src="https://lh3.googleusercontent.com/d/18IZVZUV49tboZUzpPbHIr7TUq5Qz0YYA" alt="Coaching" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition duration-300">
-                        <div class="p-6 space-y-2">
-                            <span class="text-red-500 text-xs font-bold uppercase tracking-wider">Fliers</span>
-                            <h3 class="text-xl font-bold leading-tight hover:text-red-400 transition">
-                                <a href="#">Join us for our fundraiser event at Fliers</a>
-                            </h3>
-                            <p class="text-neutral-400 text-sm line-clamp-3">
-                                The nighthawks will be hosting a fun filled night at fliers in support of the white chapel centre. Join us and have a great time for a great cause.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0 text-xs text-neutral-500">June 1, 2026</div>
-                </article>
-
-                <!-- Article 3 -->
-                <article class="bg-neutral-950 rounded-lg overflow-hidden border border-neutral-800 hover:border-neutral-700 transition flex flex-col justify-between">
-                    <div>
-                        <img src="https://www.epsports.co.uk/pub/media/wysiwyg/epsports/teams/Teams-Banner-webv2.jpg" alt="Community" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition duration-300">
-                        <div class="p-6 space-y-2">
-                            <span class="text-red-500 text-xs font-bold uppercase tracking-wider">Community</span>
-                            <h3 class="text-xl font-bold leading-tight hover:text-red-400 transition">
-                                <a href="#">Grab your hawks merch from ep sports.</a>
-                            </h3>
-                            <p class="text-neutral-400 text-sm line-clamp-3">
-                               
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0 text-xs text-neutral-500">May 15, 2026</div>
-                </article>
+    <!-- Scrollable Articles Container -->
+    <div id="news-carousel" class="flex overflow-x-auto gap-6 scroll-smooth snap-x snap-mandatory pb-4 invisible-scrollbar" style="scrollbar-width: none; -ms-overflow-style: none;">
+        
+        <!-- Article 1 -->
+        <article class="min-w-[85vw] sm:min-w-[350px] md:min-w-[380px] bg-neutral-950 rounded-lg overflow-hidden border border-neutral-800 hover:border-neutral-700 transition flex flex-col justify-between snap-start">
+            <div>
+                <img src="https://lh3.googleusercontent.com/d/1-C3Q-uXRXMsziXEHQjQb-99u_AZtfPii" alt="Training" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition duration-300">
+                <div class="p-6 space-y-2">
+                    <span class="text-red-500 text-xs font-bold uppercase tracking-wider">Team Update</span>
+                    <h3 class="text-xl font-bold leading-tight hover:text-red-400 transition">
+                        <a href="#">New Home Ground!</a>
+                    </h3>
+                    <p class="text-neutral-400 text-sm line-clamp-3">
+                        The Nighthawks are proud to announce that our new home ground for the rest of the season will be Lymm Rugby Football Club, WA13 DA5.
+                    </p>
+                </div>
             </div>
-        </section>
+            <div class="p-6 pt-0 text-xs text-neutral-500">June 2, 2026</div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="min-w-[85vw] sm:min-w-[350px] md:min-w-[380px] bg-neutral-950 rounded-lg overflow-hidden border border-neutral-800 hover:border-neutral-700 transition flex flex-col justify-between snap-start">
+            <div>
+                <img src="https://lh3.googleusercontent.com/d/18IZVZUV49tboZUzpPbHIr7TUq5Qz0YYA" alt="Coaching" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition duration-300">
+                <div class="p-6 space-y-2">
+                    <span class="text-red-500 text-xs font-bold uppercase tracking-wider">Coaching</span>
+                    <h3 class="text-xl font-bold leading-tight hover:text-red-400 transition">
+                        <a href="#">Join us for our fundraiser event at Fliers</a>
+                    </h3>
+                    <p class="text-neutral-400 text-sm line-clamp-3">
+                        The nighthawks will be hosting a fun filled night at fliers in support of the white chapel centre. Join us and have a great time for a great cause.
+                    </p>
+                </div>
+            </div>
+            <div class="p-6 pt-0 text-xs text-neutral-500">May 28, 2026</div>
+                </article>
+
+        <!-- Article 3 -->
+        <article class="min-w-[85vw] sm:min-w-[350px] md:min-w-[380px] bg-neutral-950 rounded-lg overflow-hidden border border-neutral-800 hover:border-neutral-700 transition flex flex-col justify-between snap-start">
+            <div>
+                <img src="https://www.epsports.co.uk/pub/media/wysiwyg/epsports/teams/Teams-Banner-webv2.jpg" alt="Community" class="w-full h-48 object-cover grayscale hover:grayscale-0 transition duration-300">
+                <div class="p-6 space-y-2">
+                    <span class="text-red-500 text-xs font-bold uppercase tracking-wider">Community</span>
+                    <h3 class="text-xl font-bold leading-tight hover:text-red-400 transition">
+                        <a href="#">Nighthawks Merch!</a>
+                    </h3>
+                    <p class="text-neutral-400 text-sm line-clamp-3">
+                        Nighthawks are happy to be partnered with EP Sports to help deliver high quality Hawks merch.
+                    </p>
+                </div>
+            </div>
+            <div class="p-6 pt-0 text-xs text-neutral-500">May 15, 2026</div>
+        </article>
+
+        <!-- 💡 YOU CAN PASTE NEW PAST ARTICLES RIGHT HERE! -->
+        <!-- Just copy an entire <article> ... </article> block and paste it below to add to your archive. -->
+
+    </div>
+</section>
 
         <!-- RECRUITMENT CALL TO ACTION -->
         <section id="recruitment" class="bg-neutral-950 border-2 border-red-600 rounded-2xl p-8 md:p-12 text-center max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
