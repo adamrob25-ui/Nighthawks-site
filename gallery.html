@@ -17,25 +17,26 @@
 </head>
 <body class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
 
-    <!-- NAVIGATION HEADER -->
-    <header class="sticky top-0 z-40 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-900 px-6 py-4">
-        <div class="max-w-6xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center space-x-3 group">
-                <img src="photos/logo.png" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain transition transform group-hover:scale-105" onerror="this.src='https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500'">
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-3 group">
+                <!-- Team Logo Placeholder -->
+                <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="w-8 h-8 object-contain">
                 <span class="font-black text-xl tracking-wider uppercase hidden sm:block">
-                    Merseyside <span class="text-red-500">Nighthawks</span>
+                    Merseyside <span class="text-red-600">Nighthawks</span>
                 </span>
             </a>
-            <nav class="flex items-center space-x-6 text-sm font-bold uppercase tracking-wider">    
-                <a href="index.html" class="text-neutral-400 hover:text-white transition">Home</a>    
-                <a href="index.html#news" class="text-neutral-400 hover:text-white transition">News</a>    
-                <a href="index.html#schedule" class="text-neutral-400 hover:text-white transition">Schedule</a>    
-                <a href="gallery.html" class="text-red-500 border-b-2 border-red-500 pb-1">Gallery</a>    
-                <a href="index.html#join" class="text-neutral-400 hover:text-white transition">Join Us</a>
-            </nav>
+          <nav class="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm font-bold uppercase tracking-wider overflow-x-auto whitespace-nowrap scrollbar-none py-1 max-w-[65vw] sm:max-w-none">    
+              <a href="index.html" class="text-red-500 border-b-2 border-red-500 pb-1 shrink-0">Home</a>  
+              <a href="#schedule" class="text-neutral-400 hover:text-white transition shrink-0">Schedule</a>  
+              <a href="#news" class="text-neutral-400 hover:text-white transition shrink-0">News</a>     
+              <a href="gallery.html" class="text-neutral-400 hover:text-white transition shrink-0">Gallery</a>    
+              <a href="#join" class="text-neutral-400 hover:text-white transition shrink-0">Join Us</a>
+          </nav>
+           <a href="stats.html" class="bg-red-600 hover:bg-red-700 text-white font-bold px-5 py-2 rounded transition transform hover:-translate-y-0.5 uppercase text-sm tracking-wider flex items-center justify-center">Team Stats 2025</a>
         </div>
     </header>
-
     <!-- MAIN GALLERY INTERFACE -->
     <main class="max-w-6xl w-full mx-auto px-6 py-12 flex-grow space-y-8">
         
