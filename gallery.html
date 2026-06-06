@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Gallery | Merseyside Nighthawks</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
@@ -15,6 +17,7 @@
 </head>
 <body class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
 
+    <!-- NAVIGATION HEADER -->
     <header class="sticky top-0 z-40 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-900 px-6 py-4">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3 group">
@@ -31,15 +34,19 @@
         </div>
     </header>
 
+    <!-- MAIN GALLERY INTERFACE -->
     <main class="max-w-6xl w-full mx-auto px-6 py-12 flex-grow space-y-8">
         
+        <!-- HEADER DESCRIPTION TITLE BLOCK -->
         <div class="border-b-2 border-neutral-900 pb-6 space-y-4">
             <div>
                 <h1 class="text-4xl font-black uppercase tracking-tight">Media <span class="text-red-500">Gallery</span></h1>
                 <p class="text-neutral-400 text-sm mt-2">Browse club action archives sorted dynamically by year and matchup.</p>
             </div>
             
+            <!-- TWO-TIER FILTER DASHBOARD -->
             <div class="flex flex-col sm:flex-row gap-4 bg-neutral-900/50 p-4 rounded-lg border border-neutral-900">
+                <!-- Season Year Dropdown Selection -->
                 <div class="flex flex-col space-y-1 w-full sm:w-48">
                     <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Select Season</label>
                     <select id="season-select" onchange="handleSeasonChange()" class="bg-neutral-950 border border-neutral-800 text-sm rounded p-2 text-white focus:outline-none focus:border-red-600 transition cursor-pointer">
@@ -48,17 +55,22 @@
                     </select>
                 </div>
 
+                <!-- Match Day Event Tab Controls -->
                 <div class="flex flex-col space-y-1 flex-grow">
                     <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Choose Match Day Game Album</label>
                     <div id="game-filter-container" class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider custom-scrollbar overflow-x-auto pb-1">
-                        </div>
+                        <!-- Buttons injected dynamically based on selected year -->
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- PHOTO MATRIX GRID DISPLAY VIEW -->
         <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 transition-all duration-300">
-            </div>
+            <!-- Images are mapped here dynamically -->
+        </div>
 
+        <!-- LOAD MORE CONTEXT BUTTON TRIGGER -->
         <div class="text-center pt-6">
             <button id="load-more-btn" onclick="loadMorePhotos()" class="px-8 py-3 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-red-600 text-sm font-bold uppercase tracking-wider rounded-md transition duration-300 cursor-pointer hidden">
                 Load Next 12 Images <i class="fa-solid fa-angles-down ml-2 text-xs text-red-500"></i>
@@ -66,6 +78,7 @@
         </div>
     </main>
 
+    <!-- SPONSORSHIP CALL-TO-ACTION SECTION -->
     <section class="max-w-6xl w-full mx-auto px-6 py-8 mt-16">
         <div class="w-full bg-gradient-to-r from-neutral-900 to-neutral-950 border border-neutral-900 hover:border-red-600/30 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 shadow-xl">
             <div class="space-y-2 text-center md:text-left">
@@ -86,6 +99,7 @@
         </div>
     </section>
 
+    <!-- SLIDABLE LIGHTBOX DISPLAY MODAL OVERLAY -->
     <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-red-500 cursor-pointer transition z-55">
             <i class="fa-solid fa-xmark"></i>
@@ -104,6 +118,7 @@
         </div>
     </div>
 
+    <!-- SITE FOOTER -->
     <footer class="bg-neutral-950 border-t border-neutral-900 text-neutral-500 py-12">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="space-y-4">
@@ -127,18 +142,16 @@
         </div>
     </footer>
 
+    <!-- INTERACTIVE IMAGERY ENGINE SCRIPTS -->
     <script>
         // HOUSING DATABASE ARRAY: Clean, fast relative paths mapping your GitHub folder assets!
-        // To add photos, drop them in your folder and add rows below following this template.
         const DRIVER_IMAGE_DATABASE = [
             // --- 2025 SEASON ALBUMS ---
             { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield/pic1.jpg", label: "Kickoff coverage mechanics" },
             { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield/pic2.jpg", label: "Defensive perimeter containment" },
             { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire/pic1.jpg", label: "Quarterback dynamic pocket evasion" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester/pic1.jpg", label: "Pre-snap structural alignment checks" },
-
-            // --- 2026 SEASON ALBUMS (Future expansion template example) ---
-            { year: "2026", game: "Game 1 vs Apex", src: "photos/2026/apex/pic1.jpg", label: "2026 Campaign Opener Field Entry" }
+            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe/pic1.jpg", label: "Contested target tracking reception" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester/pic1.jpg", label: "Pre-snap structural alignment checks" }
         ];
 
         // ENGINE APP STATE CONTROL
@@ -248,7 +261,6 @@
             document.body.style.overflow = "hidden";
         }
 
-        // SLIDER CONTROL HOOKS
         function closeLightbox() {
             const container = document.getElementById('lightbox');
             container.classList.add('opacity-0');
