@@ -329,6 +329,28 @@
                 closeModal();
             }
         }
+        function scrollNews(direction) {
+    const carousel = document.getElementById('news-carousel');
+    if (!carousel) return;
+
+    const firstCard = carousel.querySelector('article');
+    if (!firstCard) return;
+
+    const shiftAmount = firstCard.offsetWidth + 24; 
+    let targetScroll = carousel.scrollLeft;
+
+    if (direction === 'left') {
+        targetScroll -= shiftAmount;
+    } else {
+        targetScroll += shiftAmount;
+    }
+
+    carousel.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+    });
+}
+
     </script>
 
 </body>
