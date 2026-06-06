@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Gallery | Merseyside Nighthawks</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
@@ -17,11 +15,10 @@
 </head>
 <body class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
 
-    <!-- NAVIGATION HEADER -->
     <header class="sticky top-0 z-40 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-900 px-6 py-4">
         <div class="max-w-6xl mx-auto flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-3 group">
-                <img src="https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain transition transform group-hover:scale-105">
+                <img src="photos/logo.png" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain transition transform group-hover:scale-105" onerror="this.src='https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500'">
                 <span class="font-black text-xl tracking-wider uppercase hidden sm:block">
                     Merseyside <span class="text-red-500">Nighthawks</span>
                 </span>
@@ -34,19 +31,15 @@
         </div>
     </header>
 
-    <!-- MAIN GALLERY INTERFACE -->
     <main class="max-w-6xl w-full mx-auto px-6 py-12 flex-grow space-y-8">
         
-        <!-- HEADER DESCRIPTION TITLE BLOCK -->
         <div class="border-b-2 border-neutral-900 pb-6 space-y-4">
             <div>
                 <h1 class="text-4xl font-black uppercase tracking-tight">Media <span class="text-red-500">Gallery</span></h1>
                 <p class="text-neutral-400 text-sm mt-2">Browse club action archives sorted dynamically by year and matchup.</p>
             </div>
             
-            <!-- TWO-TIER FILTER DASHBOARD -->
             <div class="flex flex-col sm:flex-row gap-4 bg-neutral-900/50 p-4 rounded-lg border border-neutral-900">
-                <!-- Season Year Dropdown Selection -->
                 <div class="flex flex-col space-y-1 w-full sm:w-48">
                     <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Select Season</label>
                     <select id="season-select" onchange="handleSeasonChange()" class="bg-neutral-950 border border-neutral-800 text-sm rounded p-2 text-white focus:outline-none focus:border-red-600 transition cursor-pointer">
@@ -55,22 +48,17 @@
                     </select>
                 </div>
 
-                <!-- Match Day Event Tab Controls -->
                 <div class="flex flex-col space-y-1 flex-grow">
                     <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Choose Match Day Game Album</label>
                     <div id="game-filter-container" class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider custom-scrollbar overflow-x-auto pb-1">
-                        <!-- Buttons injected dynamically based on selected year -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
 
-        <!-- PHOTO MATRIX GRID DISPLAY VIEW -->
         <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 transition-all duration-300">
-            <!-- Images are mapped here dynamically -->
-        </div>
+            </div>
 
-        <!-- LOAD MORE CONTEXT BUTTON TRIGGER -->
         <div class="text-center pt-6">
             <button id="load-more-btn" onclick="loadMorePhotos()" class="px-8 py-3 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-red-600 text-sm font-bold uppercase tracking-wider rounded-md transition duration-300 cursor-pointer hidden">
                 Load Next 12 Images <i class="fa-solid fa-angles-down ml-2 text-xs text-red-500"></i>
@@ -78,7 +66,26 @@
         </div>
     </main>
 
-    <!-- SLIDABLE LIGHTBOX pops DISPLAY BOX -->
+    <section class="max-w-6xl w-full mx-auto px-6 py-8 mt-16">
+        <div class="w-full bg-gradient-to-r from-neutral-900 to-neutral-950 border border-neutral-900 hover:border-red-600/30 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 shadow-xl">
+            <div class="space-y-2 text-center md:text-left">
+                <h3 class="text-xl font-black uppercase tracking-wider text-white">
+                    Partner With The <span class="text-red-500">Nighthawks</span>
+                </h3>
+                <p class="text-neutral-400 text-sm max-w-xl font-medium">
+                    If you wish to sponsor the Nighthawks please contact here. Join our flight and connect your brand with competitive American football on Merseyside.
+                </p>
+            </div>
+            <div class="w-full md:w-auto shrink-0 text-center">
+                <a href="mailto:sponsorship.nighthawks@gmail.com?subject=Merseyside%20Nighthawks%20Sponsorship%20Inquiry" 
+                   class="inline-flex items-center justify-center w-full md:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-xs font-black uppercase tracking-widest rounded-md transition duration-300 shadow-lg hover:shadow-red-900/20 group cursor-pointer">
+                    Contact Us 
+                    <i class="fa-solid fa-envelope ml-2 transform group-hover:translate-x-1 transition duration-300 text-sm"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-red-500 cursor-pointer transition z-55">
             <i class="fa-solid fa-xmark"></i>
@@ -97,12 +104,11 @@
         </div>
     </div>
 
-    <!-- SITE FOOTER BRANDING -->
-    <footer class="bg-neutral-950 border-t border-neutral-900 text-neutral-500 py-12 mt-12">
+    <footer class="bg-neutral-950 border-t border-neutral-900 text-neutral-500 py-12">
         <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="space-y-4">
                 <div class="flex items-center space-x-3">
-                    <img src="https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain">
+                    <img src="photos/logo.png" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain" onerror="this.src='https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500'">
                     <span class="font-black text-white uppercase tracking-wider">Merseyside Nighthawks</span>
                 </div>
                 <p class="text-sm text-neutral-500 leading-relaxed">Establishing a legacy of competitive American football in Liverpool and the wider Merseyside region.</p>
@@ -121,50 +127,32 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE IMAGERY ENGINE SCRIPTS -->
     <script>
-        // MOCK DATA: Matching your exact Google Drive architecture as shown in ab61a6d9-f790-41e7-8660-17eb54976043
-        // You'll replace these mock image strings with your real Google Drive asset paths later!
+        // HOUSING DATABASE ARRAY: Clean, fast relative paths mapping your GitHub folder assets!
+        // To add photos, drop them in your folder and add rows below following this template.
         const DRIVER_IMAGE_DATABASE = [
-            // 2025 Season - Game 2 vs Sheffield
-            { year: "2025", game: "Game 2 vs Sheffield", src: "https://images.unsplash.com/photo-1566577739112-5180d4bf9390?q=80&w=600", label: "Kickoff capture at Sheffield field boundaries" },
-            { year: "2025", game: "Game 2 vs Sheffield", src: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600", label: "Secondary coverage monitoring defensive shifts" },
-            
-            // 2025 Season - Game 4 vs Yorkshire
-            { year: "2025", game: "Game 4 vs Yorkshire", src: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=600", label: "O-line stabilization drill mechanics matching execution" },
-            { year: "2025", game: "Game 4 vs Yorkshire", src: "https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=600", label: "Quarterback pocket awareness training progression" },
-            
-            // 2025 Season - Game 6 vs Scunthorpe
-            { year: "2025", game: "Game 6 vs Scunthorpe", src: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=600", label: "Wide receiver adjustments deep across center space" },
-            
-            // 2025 Season - Game 8 vs Chester
-            { year: "2025", game: "Game 8 vs Chester", src: "https://images.unsplash.com/photo-1515238152791-8216bfdf89a7?q=80&w=600", label: "Breakout team assembly pre-snap adjustments" },
-            { year: "2025", game: "Game 8 vs Chester", src: "https://images.unsplash.com/photo-1526676001881-6a7eefb302f4?q=80&w=600", label: "Running back navigation splitting line targets" },
-            
-            // 2026 Season Mock entry to prove dynamic system functionality
-            { year: "2026", game: "Game 1 vs Edinburgh", src: "https://images.unsplash.com/photo-1519766304817-4f37bda74a27?q=80&w=600", label: "Season open execution celebration sequence" }
+            // --- 2025 SEASON ALBUMS ---
+            { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield/pic1.jpg", label: "Kickoff coverage mechanics" },
+            { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield/pic2.jpg", label: "Defensive perimeter containment" },
+            { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire/pic1.jpg", label: "Quarterback dynamic pocket evasion" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester/pic1.jpg", label: "Pre-snap structural alignment checks" },
+
+            // --- 2026 SEASON ALBUMS (Future expansion template example) ---
+            { year: "2026", game: "Game 1 vs Apex", src: "photos/2026/apex/pic1.jpg", label: "2026 Campaign Opener Field Entry" }
         ];
 
         // ENGINE APP STATE CONTROL
         let activeYear = "2025";
         let activeGame = "all";
-        let maxDisplayLimit = 12; // Strictly loads in blocks of 12 images
+        let maxDisplayLimit = 12; // Enforces the strict 12-image visual cap
         let activeFilteringQueue = [];
         let globalLightboxPointer = 0;
 
-        // LOAD GAME TOGGLE ELEMENTS BY ACTIVE SEASON SELECTOR
         function populateGameFilters() {
             const container = document.getElementById('game-filter-container');
             container.innerHTML = "";
+            const associatedGames = [...new Set(DRIVER_IMAGE_DATABASE.filter(img => img.year === activeYear).map(img => img.game))];
 
-            // Gather all available games assigned inside the current season year parameters
-            const associatedGames = [...new Set(
-                DRIVER_IMAGE_DATABASE
-                    .filter(img => img.year === activeYear)
-                    .map(img => img.game)
-            )];
-
-            // Create global 'All Games' button option
             const allBtn = document.createElement('button');
             allBtn.innerText = "All Matchups";
             allBtn.id = "game-btn-all";
@@ -172,11 +160,9 @@
             allBtn.className = getButtonClass(activeGame === 'all');
             container.appendChild(allBtn);
 
-            // Create individual unique action path tabs
             associatedGames.forEach(gameName => {
                 const btn = document.createElement('button');
                 btn.innerText = gameName;
-                // Sanitize target string names to maintain standardized selector bindings
                 btn.id = `game-btn-${gameName.replace(/\s+/g, '-')}`;
                 btn.onclick = () => setGameFilter(gameName);
                 btn.className = getButtonClass(activeGame === gameName);
@@ -190,52 +176,40 @@
                 : "px-3 py-1.5 rounded bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800 hover:border-neutral-700 cursor-pointer whitespace-nowrap transition shrink-0";
         }
 
-        // TRIGGER RESPONDERS UPON STRUCTURAL CONFIGURATION VARIATIONS
         function handleSeasonChange() {
             activeYear = document.getElementById('season-select').value;
-            activeGame = "all"; // Default safety rollback reset
+            activeGame = "all"; 
             populateGameFilters();
             renderGalleryGrid(true);
         }
 
         function setGameFilter(gameTargetName) {
             activeGame = gameTargetName;
-            
-            // Loop adjustment toggles for layout highlight color shifts
             const buttons = document.querySelectorAll('#game-filter-container button');
             buttons.forEach(b => b.className = getButtonClass(false));
             
             const targetedId = gameTargetName === 'all' ? 'game-btn-all' : `game-btn-${gameTargetName.replace(/\s+/g, '-')}`;
             const targetBtn = document.getElementById(targetedId);
             if (targetBtn) targetBtn.className = getButtonClass(true);
-
             renderGalleryGrid(true);
         }
 
-        // GRID RENDERING MANAGEMENT MATRICES
         function renderGalleryGrid(resetCounter = false) {
             const grid = document.getElementById('gallery-grid');
             const loadBtn = document.getElementById('load-more-btn');
-
             if (resetCounter) maxDisplayLimit = 12;
 
-            // Sort data array blocks down by double criteria profiles
             activeFilteringQueue = DRIVER_IMAGE_DATABASE.filter(photo => {
-                const matchYear = photo.year === activeYear;
-                const matchGame = (activeGame === 'all' || photo.game === activeGame);
-                return matchYear && matchGame;
+                return photo.year === activeYear && (activeGame === 'all' || photo.game === activeGame);
             });
 
             grid.innerHTML = "";
-
-            // Slice out limits to evaluate 12 elements cleanly
             const activeDisplayChunk = activeFilteringQueue.slice(0, maxDisplayLimit);
 
             activeDisplayChunk.forEach((photo, idx) => {
                 const item = document.createElement('div');
                 item.className = "group overflow-hidden rounded-lg bg-neutral-900 border border-neutral-900 hover:border-red-600/40 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-md";
                 item.onclick = () => launchLightbox(idx);
-
                 item.innerHTML = `
                     <div class="overflow-hidden bg-black aspect-video sm:aspect-square md:aspect-video">
                         <img src="${photo.src}" alt="Match Frame" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" loading="lazy">
@@ -248,7 +222,6 @@
                 grid.appendChild(item);
             });
 
-            // Handle condition checking parameters to show/hide 'Load More' actions
             if (maxDisplayLimit < activeFilteringQueue.length) {
                 loadBtn.classList.remove('hidden');
             } else {
@@ -257,65 +230,48 @@
         }
 
         function loadMorePhotos() {
-            maxDisplayLimit += 12; // Append next 12 records
+            maxDisplayLimit += 12; 
             renderGalleryGrid();
         }
 
-        // FULLSCREEN VIEWER HANDLING LOGIC MODAL MANAGEMENT
         function launchLightbox(idx) {
             globalLightboxPointer = idx;
             const container = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
             const text = document.getElementById('lightbox-caption');
-
             const currentImage = activeFilteringQueue[globalLightboxPointer];
             if (!currentImage) return;
-
             img.src = currentImage.src;
             text.innerText = `${currentImage.game} - ${currentImage.label}`;
-
             container.classList.remove('hidden');
             setTimeout(() => container.classList.remove('opacity-0'), 10);
             document.body.style.overflow = "hidden";
         }
 
+        // SLIDER CONTROL HOOKS
         function closeLightbox() {
             const container = document.getElementById('lightbox');
             container.classList.add('opacity-0');
-            setTimeout(() => {
-                container.classList.add('hidden');
-                document.body.style.overflow = "auto";
-            }, 300);
+            setTimeout(() => { container.classList.add('hidden'); document.body.style.overflow = "auto"; }, 300);
         }
 
         function navigateLightbox(dir) {
-            if (dir === 'left') {
-                globalLightboxPointer = globalLightboxPointer === 0 ? activeFilteringQueue.length - 1 : globalLightboxPointer - 1;
-            } else {
-                globalLightboxPointer = globalLightboxPointer === activeFilteringQueue.length - 1 ? 0 : globalLightboxPointer + 1;
-            }
-
+            globalLightboxPointer = dir === 'left' 
+                ? (globalLightboxPointer === 0 ? activeFilteringQueue.length - 1 : globalLightboxPointer - 1)
+                : (globalLightboxPointer === activeFilteringQueue.length - 1 ? 0 : globalLightboxPointer + 1);
             const img = document.getElementById('lightbox-img');
             const text = document.getElementById('lightbox-caption');
             const currentImage = activeFilteringQueue[globalLightboxPointer];
-
-            if (currentImage) {
-                img.src = currentImage.src;
-                text.innerText = `${currentImage.game} - ${currentImage.label}`;
-            }
+            if (currentImage) { img.src = currentImage.src; text.innerText = `${currentImage.game} - ${currentImage.label}`; }
         }
 
-        // LISTEN FOR SYSTEM INPUT ACTIONS (Keyboard Slider Hooks)
         document.addEventListener('keydown', (e) => {
-            const lightbox = document.getElementById('lightbox');
-            if (lightbox.classList.contains('hidden')) return;
-
+            if (document.getElementById('lightbox').classList.contains('hidden')) return;
             if (e.key === 'ArrowLeft') navigateLightbox('left');
             if (e.key === 'ArrowRight') navigateLightbox('right');
             if (e.key === 'Escape') closeLightbox();
         });
 
-        // BOOTSTRAP INITIALIZATION PROCEDURES
         document.addEventListener("DOMContentLoaded", () => {
             populateGameFilters();
             renderGalleryGrid();
