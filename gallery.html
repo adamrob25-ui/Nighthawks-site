@@ -4,12 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Media Gallery | Merseyside Nighthawks</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: #0a0a0a; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #ef4444; }
@@ -17,46 +15,36 @@
 </head>
 <body class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
 
-    <!-- HEADER & NAVIGATION -->
     <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-3 group">
-                <!-- Team Logo Placeholder -->
                 <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="w-8 h-8 object-contain">
                 <span class="font-black text-xl tracking-wider uppercase hidden sm:block">
                     Merseyside <span class="text-red-600">Nighthawks</span>
                 </span>
             </a>
-          <nav class="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm font-bold uppercase tracking-wider overflow-x-auto whitespace-nowrap scrollbar-none py-1 max-w-[65vw] sm:max-w-none">    
-              <a href="index.html" class="text-red-500 border-b-2 border-red-500 pb-1 shrink-0">Home</a>  
-              <a href="#schedule" class="text-neutral-400 hover:text-white transition shrink-0">Schedule</a>  
-              <a href="#news" class="text-neutral-400 hover:text-white transition shrink-0">News</a>     
-              <a href="gallery.html" class="text-neutral-400 hover:text-white transition shrink-0">Gallery</a>    
-              <a href="#join" class="text-neutral-400 hover:text-white transition shrink-0">Join Us</a>
-          </nav>
-           <a href="stats.html" class="bg-red-600 hover:bg-red-700 text-white font-bold uppercase transition text-center shrink-0
-   /* Mobile styles */
-   text-[10px] py-1.5 px-2.5 rounded
-   /* Desktop screen upgrade styles */
-   sm:text-xs sm:py-3 sm:px-5 sm:rounded-md">
-    Stats 2025
-</a>
-
+            <nav class="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm font-bold uppercase tracking-wider overflow-x-auto whitespace-nowrap scrollbar-none py-1 max-w-[65vw] sm:max-w-none">   
+                <a href="index.html" class="text-red-500 border-b-2 border-red-500 pb-1 shrink-0">Home</a>  
+                <a href="#schedule" class="text-neutral-400 hover:text-white transition shrink-0">Schedule</a>  
+                <a href="#news" class="text-neutral-400 hover:text-white transition shrink-0">News</a>     
+                <a href="gallery.html" class="text-neutral-400 hover:text-white transition shrink-0">Gallery</a>     
+                <a href="#join" class="text-neutral-400 hover:text-white transition shrink-0">Join Us</a>
+            </nav>
+            <a href="stats.html" class="bg-red-600 hover:bg-red-700 text-white font-bold uppercase transition text-center shrink-0 text-[10px] py-1.5 px-2.5 rounded sm:text-xs sm:py-3 sm:px-5 sm:rounded-md">
+                Stats 2025
+            </a>
         </div>
     </header>
-    <!-- MAIN GALLERY INTERFACE -->
-    <main class="max-w-6xl w-full mx-auto px-6 py-12 flex-grow space-y-8">
+
+    <main class="max-w-7xl w-full mx-auto px-6 py-12 flex-grow space-y-8">
         
-        <!-- HEADER DESCRIPTION TITLE BLOCK -->
-        <div class="border-b-2 border-neutral-900 pb-6 space-y-4">
+        <div class="border-b border-neutral-900 pb-6 space-y-4">
             <div>
                 <h1 class="text-4xl font-black uppercase tracking-tight">Media <span class="text-red-500">Gallery</span></h1>
                 <p class="text-neutral-400 text-sm mt-2">Browse club action archives sorted dynamically by year and matchup.</p>
             </div>
             
-            <!-- TWO-TIER FILTER DASHBOARD -->
-            <div class="flex flex-col sm:flex-row gap-4 bg-neutral-900/50 p-4 rounded-lg border border-neutral-900">
-                <!-- Season Year Dropdown Selection -->
+            <div class="flex flex-col sm:flex-row gap-4 bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
                 <div class="flex flex-col space-y-1 w-full sm:w-48">
                     <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Select Season</label>
                     <select id="season-select" onchange="handleSeasonChange()" class="bg-neutral-950 border border-neutral-800 text-sm rounded p-2 text-white focus:outline-none focus:border-red-600 transition cursor-pointer">
@@ -65,22 +53,17 @@
                     </select>
                 </div>
 
-                <!-- Match Day Event Tab Controls -->
                 <div class="flex flex-col space-y-1 flex-grow">
                     <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Choose Match Day Game Album</label>
                     <div id="game-filter-container" class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider custom-scrollbar overflow-x-auto pb-1">
-                        <!-- Buttons injected dynamically based on selected year -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
 
-        <!-- PHOTO MATRIX GRID DISPLAY VIEW -->
-        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 transition-all duration-300">
-            <!-- Images are mapped here dynamically -->
-        </div>
+        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-300">
+            </div>
 
-        <!-- LOAD MORE CONTEXT BUTTON TRIGGER -->
         <div class="text-center pt-6">
             <button id="load-more-btn" onclick="loadMorePhotos()" class="px-8 py-3 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-red-600 text-sm font-bold uppercase tracking-wider rounded-md transition duration-300 cursor-pointer hidden">
                 Load Next 12 Images <i class="fa-solid fa-angles-down ml-2 text-xs text-red-500"></i>
@@ -88,8 +71,7 @@
         </div>
     </main>
 
-    <!-- SPONSORSHIP CALL-TO-ACTION SECTION -->
-    <section class="max-w-6xl w-full mx-auto px-6 py-8 mt-16">
+    <section class="max-w-7xl w-full mx-auto px-6 py-8">
         <div class="w-full bg-gradient-to-r from-neutral-900 to-neutral-950 border border-neutral-900 hover:border-red-600/30 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 shadow-xl">
             <div class="space-y-2 text-center md:text-left">
                 <h3 class="text-xl font-black uppercase tracking-wider text-white">
@@ -109,7 +91,6 @@
         </div>
     </section>
 
-    <!-- SLIDABLE LIGHTBOX DISPLAY MODAL OVERLAY -->
     <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-red-500 cursor-pointer transition z-55">
             <i class="fa-solid fa-xmark"></i>
@@ -128,9 +109,8 @@
         </div>
     </div>
 
-    <!-- SITE FOOTER -->
     <footer class="bg-neutral-950 border-t border-neutral-900 text-neutral-500 py-12">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="space-y-4">
                 <div class="flex items-center space-x-3">
                     <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain" onerror="this.src='https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500'">
@@ -152,616 +132,53 @@
         </div>
     </footer>
 
-    <!-- INTERACTIVE IMAGERY ENGINE SCRIPTS -->
     <script>
-        // HOUSING DATABASE ARRAY: Clean, fast relative paths mapping your GitHub folder assets!
         const DRIVER_IMAGE_DATABASE = [
             // --- 2025 SEASON ALBUMS ---
-      { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06580.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06583.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06586.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06589.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06593-Pano.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06596.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06599.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06604.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06606.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06607.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06611.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06613.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06619.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06622.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06627.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06629.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06649.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06665.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06682.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06688.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06697.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06699.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06700.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06706.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06707.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06712.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06717.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06720.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06732.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06736.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06745.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06746.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06757.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06771.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06773.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06778.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06781.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06785.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06786.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06788.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06793.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06795.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06802.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06811.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06812.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06815.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06817.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06835.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06841.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06844.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00032.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00040.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00047 2.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00049.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00052.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00058.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00069.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00081.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00086.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00094.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00102.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00106.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00116.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00123.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00129.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00135.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00140.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00170.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00184.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00193.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08749.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08751.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08758.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08763.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08768.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08776.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08785.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08796.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08797.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08806.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08809.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08811.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08821.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08830.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08832.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08836.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08859.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08876.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08880.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08885.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08889.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08894.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08896.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08913.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08919.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08929.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08930.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08931.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08934.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08939.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08954.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08959.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08969.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08990.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08993.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08997.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09001.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09002.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09004.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09008.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09012.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09022.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09026.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09035.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09039.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09046.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09058.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09071.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09078.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09085.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09088.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09111.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09126.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09136.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09139.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09147.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09154.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09168.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09183.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09197.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09212.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09219.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09226.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09239.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09248.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09249.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09263.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09268.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09269.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09300.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09301.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09307.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09314.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09321.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09331.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09340.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09351.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09355.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09358.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09363.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09377.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09388.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09390.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09399.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09407.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09409.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09415.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09419.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09427.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09441.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09445.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09457.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09468.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09474.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09478.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09481.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09488.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09492.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09495.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09506.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09516.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09517.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09521.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09525.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09531.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09536.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09539.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09554.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09558.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09576.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09578.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09584.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09588.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09597.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09608.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09611.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09625.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09636.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09649.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09655.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09664.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09673.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09684.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09686.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09688.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09725.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09746.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09758.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09792.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09799.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09803.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09809.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09847.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09865.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09878.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09884.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09891.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09899.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09910.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09921.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09928.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09941.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09943.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09953.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09956.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09970.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC09977.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DJI_0046.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DJI_0049.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DJI_0052.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04318.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04338.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04344.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04350.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04408.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04416.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04425.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04431.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04442.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04449.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04452(1).jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04452.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04471.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04480.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04496.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04515.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04525.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04530.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04539.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04544.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04549.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04553.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04559.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04561.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04564.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04566.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04579.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04600.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04602.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04613.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04631.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04636.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04642.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04647.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04653.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04655.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04656.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04659.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04669.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04672.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04679.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04683.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04685.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04688.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04702.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04707.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04710.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04714.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04719.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04733.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04735.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04738.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04744.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04747.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04753.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04760.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04770.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04780.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04791.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04794.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04795.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04800.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04813.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04822.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04828.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04836.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04838.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04846.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04874.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04880.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04903.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04939.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04948.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04965.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04976.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04980.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04983.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC04993.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05008.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05016.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05021.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05026.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05031.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05033.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05043.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05067.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05071.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05073.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05080.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05083.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05086.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05091.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05114.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05139.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05146.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05159.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05164.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05173.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05177.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05180.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05196.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05205.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05224.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05232.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05237.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05259.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05281.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05288.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 2 vs Sheffield", src: "photos/2025/sheffield-game2/DSC05299.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06435.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06441.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06442.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06457.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06471.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06485.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06503.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06504.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06535.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06538.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06548.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06563.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06564.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06569.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06575.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06587.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06595.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06611.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06618.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06622.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06648.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06649.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06654.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06657.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06662.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06666.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06669.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06676.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06679.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06704.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06714.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06718.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06730.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06744.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06747.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06768.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06770.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06779.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06802.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06816.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06824.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06828.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06836.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06842.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06854.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06861.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06863.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06865.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06869.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06876.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06886.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06888.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06901.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06908.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06913.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06917.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06926.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06936.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06939.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06947.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06956.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06968.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06975.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06979.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06992.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC06999.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07005.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07013.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07016.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07020.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07024.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07025.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07029.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07034.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07044.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07047.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07051.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07052.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07062.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07067.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07071.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07088.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07094.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07097.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07103.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07113.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07115.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07119.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07125.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07130.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07133.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07138.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07143.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07145.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07148.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07150.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07155.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07161.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07170.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07188.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07189.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07198.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07201.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07202.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07213.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07216.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07226.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07239.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07244.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07252.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07263.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07271.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07285.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07329.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07336.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07346.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07360.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07367.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07378.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07396.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07419.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07432.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07439.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07451.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07455.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07478.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07497.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07517.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07521.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07526.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07530.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07536.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07539.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07555.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07562.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07564.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07570.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07572.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07576.jpg", label: "Action Shot" },
- { year: "2025", game: "Game 4 vs Yorkshire", src: "photos/2025/yorkshire-game4/DSC07579.jpg", label: "Action Shot" }
-        ];
-
-        // ENGINE APP STATE CONTROL
-        let activeYear = "2025";
-        let activeGame = "all";
-        let maxDisplayLimit = 12; // Enforces the strict 12-image visual cap
-        let activeFilteringQueue = [];
-        let globalLightboxPointer = 0;
-
-        function populateGameFilters() {
-            const container = document.getElementById('game-filter-container');
-            container.innerHTML = "";
-            const associatedGames = [...new Set(DRIVER_IMAGE_DATABASE.filter(img => img.year === activeYear).map(img => img.game))];
-
-            const allBtn = document.createElement('button');
-            allBtn.innerText = "All Matchups";
-            allBtn.id = "game-btn-all";
-            allBtn.onclick = () => setGameFilter('all');
-            allBtn.className = getButtonClass(activeGame === 'all');
-            container.appendChild(allBtn);
-
-            associatedGames.forEach(gameName => {
-                const btn = document.createElement('button');
-                btn.innerText = gameName;
-                btn.id = `game-btn-${gameName.replace(/\s+/g, '-')}`;
-                btn.onclick = () => setGameFilter(gameName);
-                btn.className = getButtonClass(activeGame === gameName);
-                container.appendChild(btn);
-            });
-        }
-
-        function getButtonClass(isActive) {
-            return isActive 
-                ? "px-3 py-1.5 rounded bg-red-600 text-white cursor-pointer whitespace-nowrap transition shrink-0"
-                : "px-3 py-1.5 rounded bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800 hover:border-neutral-700 cursor-pointer whitespace-nowrap transition shrink-0";
-        }
-
-        function handleSeasonChange() {
-            activeYear = document.getElementById('season-select').value;
-            activeGame = "all"; 
-            populateGameFilters();
-            renderGalleryGrid(true);
-        }
-
-        function setGameFilter(gameTargetName) {
-            activeGame = gameTargetName;
-            const buttons = document.querySelectorAll('#game-filter-container button');
-            buttons.forEach(b => b.className = getButtonClass(false));
-            
-            const targetedId = gameTargetName === 'all' ? 'game-btn-all' : `game-btn-${gameTargetName.replace(/\s+/g, '-')}`;
-            const targetBtn = document.getElementById(targetedId);
-            if (targetBtn) targetBtn.className = getButtonClass(true);
-            renderGalleryGrid(true);
-        }
-
-        function renderGalleryGrid(resetCounter = false) {
-            const grid = document.getElementById('gallery-grid');
-            const loadBtn = document.getElementById('load-more-btn');
-            if (resetCounter) maxDisplayLimit = 12;
-
-            activeFilteringQueue = DRIVER_IMAGE_DATABASE.filter(photo => {
-                return photo.year === activeYear && (activeGame === 'all' || photo.game === activeGame);
-            });
-
-            grid.innerHTML = "";
-            const activeDisplayChunk = activeFilteringQueue.slice(0, maxDisplayLimit);
-
-            activeDisplayChunk.forEach((photo, idx) => {
-                const item = document.createElement('div');
-                item.className = "group overflow-hidden rounded-lg bg-neutral-900 border border-neutral-900 hover:border-red-600/40 flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-md";
-                item.onclick = () => launchLightbox(idx);
-                item.innerHTML = `
-                    <div class="overflow-hidden bg-black aspect-video sm:aspect-square md:aspect-video">
-                        <img src="${photo.src}" alt="Match Frame" class="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" loading="lazy">
-                    </div>
-                    <div class="p-3 bg-neutral-900/90 border-t border-neutral-950 flex flex-col space-y-1">
-                        <span class="text-[9px] text-red-500 font-extrabold uppercase tracking-widest">${photo.game}</span>
-                        <p class="text-xs text-neutral-400 truncate font-medium group-hover:text-white transition">${photo.label}</p>
-                    </div>
-                `;
-                grid.appendChild(item);
-            });
-
-            if (maxDisplayLimit < activeFilteringQueue.length) {
-                loadBtn.classList.remove('hidden');
-            } else {
-                loadBtn.classList.add('hidden');
-            }
-        }
-
-        function loadMorePhotos() {
-            maxDisplayLimit += 12; 
-            renderGalleryGrid();
-        }
-
-        function launchLightbox(idx) {
-            globalLightboxPointer = idx;
-            const container = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            const text = document.getElementById('lightbox-caption');
-            const currentImage = activeFilteringQueue[globalLightboxPointer];
-            if (!currentImage) return;
-            img.src = currentImage.src;
-            text.innerText = `${currentImage.game} - ${currentImage.label}`;
-            container.classList.remove('hidden');
-            setTimeout(() => container.classList.remove('opacity-0'), 10);
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeLightbox() {
-            const container = document.getElementById('lightbox');
-            container.classList.add('opacity-0');
-            setTimeout(() => { container.classList.add('hidden'); document.body.style.overflow = "auto"; }, 300);
-        }
-
-        function navigateLightbox(dir) {
-            globalLightboxPointer = dir === 'left' 
-                ? (globalLightboxPointer === 0 ? activeFilteringQueue.length - 1 : globalLightboxPointer - 1)
-                : (globalLightboxPointer === activeFilteringQueue.length - 1 ? 0 : globalLightboxPointer + 1);
-            const img = document.getElementById('lightbox-img');
-            const text = document.getElementById('lightbox-caption');
-            const currentImage = activeFilteringQueue[globalLightboxPointer];
-            if (currentImage) { img.src = currentImage.src; text.innerText = `${currentImage.game} - ${currentImage.label}`; }
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightbox').classList.contains('hidden')) return;
-            if (e.key === 'ArrowLeft') navigateLightbox('left');
-            if (e.key === 'ArrowRight') navigateLightbox('right');
-            if (e.key === 'Escape') closeLightbox();
-        });
-
-        document.addEventListener("DOMContentLoaded", () => {
-            populateGameFilters();
-            renderGalleryGrid();
-        });
-    </script>
-</body>
-</html>
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06580.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06583.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06586.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06589.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06593-Pano.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06596.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06599.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06604.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06606.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06607.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06611.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06613.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06619.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06622.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06627.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06629.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06649.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06665.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06682.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06688.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06697.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06699.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06700.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06706.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06707.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06712.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06717.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06720.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06732.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06736.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06745.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06746.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06757.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06771.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06773.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06778.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06781.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06785.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06786.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06788.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06793.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06795.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06802.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06811.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06812.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06815.jpg", label: "Action Shot" },
+            { year: "2025", game: "Game 8 vs Chester", src: "photos/
