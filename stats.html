@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Leaderboards | Merseyside Nighthawks</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-black text-white font-sans selection:bg-red-600 selection:text-white">
 
-    <!-- NAVIGATION HEADER -->
     <header class="bg-neutral-950 border-b border-neutral-800 sticky top-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center space-x-3 group">
-                <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object- contain transition transfrom group-hover:scale-105">
+                <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain transition transform group-hover:scale-105">
                 <span class="font-black text-xl tracking-wider uppercase hidden sm:block">
                     Merseyside <span class="text-red-600">Nighthawks</span>
                 </span>
@@ -26,36 +23,44 @@
         </div>
     </header>
 
-    <!-- MAIN STATISTICS CONTAINER -->
     <main class="container mx-auto px-6 py-12 max-w-6xl space-y-12">
         
-        <!-- TITLE BANNER & VIEW TOGGLES -->
         <div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-neutral-800 pb-6 gap-6">
             <div>
                 <span class="text-red-500 text-xs font-bold uppercase tracking-widest bg-red-600/10 px-3 py-1 rounded border border-red-500/20">
                     Stat Center
                 </span>
                 <h1 class="text-4xl md:text-5xl font-black uppercase tracking-tight mt-3">
-                    2025 Team <span class="text-red-500">Leaderboards</span>
+                    <span id="display-year">2026</span> Team <span class="text-red-500">Leaderboards</span>
                 </h1>
-                <p class="text-neutral-400 text-sm mt-1">All the stats from last years Division 1 promotion season.</p>
+                <p class="text-neutral-400 text-sm mt-1">All the stats from our recent competitive campaign seasons.</p>
             </div>
             
-            <!-- Unit Selection Toggle Switch -->
-            <div class="inline-flex bg-neutral-900 p-1 rounded-lg border border-neutral-800 self-start md:self-auto">
-                <button id="btn-offense" onclick="switchStats('offense')" class="px-6 py-2.5 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer">
-                    Offence
-                </button>
-                <button id="btn-defense" onclick="switchStats('defense')" class="px-6 py-2.5 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer">
-                    Defence
-                </button>
+            <div class="flex flex-wrap gap-4 items-center self-start md:self-auto">
+                
+                <div class="relative inline-block text-left">
+                    <select id="select-year" onchange="changeYear(this.value)" class="bg-neutral-900 border border-neutral-800 text-white text-sm font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg focus:outline-none focus:border-red-600 cursor-pointer appearance-none pr-10">
+                        <option value="2026" selected>2026 Season</option>
+                        <option value="2025">2025 Season</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-neutral-400">
+                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </div>
+                </div>
+
+                <div class="inline-flex bg-neutral-900 p-1 rounded-lg border border-neutral-800">
+                    <button id="btn-offense" onclick="switchStats('offense')" class="px-6 py-2.5 text-sm font-bold uppercase tracking-wider rounded-md transition bg-red-600 text-white cursor-pointer">
+                        Offence
+                    </button>
+                    <button id="btn-defense" onclick="switchStats('defense')" class="px-6 py-2.5 text-sm font-bold uppercase tracking-wider rounded-md transition text-neutral-400 hover:text-white cursor-pointer">
+                        Defence
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- ================= OFFENCE UNIT PACKET ================= -->
         <div id="wrapper-offense" class="space-y-16">
             
-            <!-- 1. PASSING STATS SECTION -->
             <section class="space-y-4">
                 <div class="flex items-center space-x-3 border-b border-neutral-800 pb-2">
                     <i class="fa-solid fa-cloud-arrow-up text-red-500 text-lg"></i>
@@ -80,14 +85,13 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                                <tr><td colspan="11" class="py-8 text-center text-neutral-600 font-mono">Importing passing spreadsheet numbers...</td></tr>
+                                <tr><td colspan="11" class="py-8 text-center text-neutral-600 font-mono">Loading data pipeline feeds...</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </section>
 
-            <!-- 2. RUSHING STATS SECTION -->
             <section class="space-y-4">
                 <div class="flex items-center space-x-3 border-b border-neutral-800 pb-2">
                     <i class="fa-solid fa-person-running text-red-500 text-lg"></i>
@@ -111,14 +115,13 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                                <tr><td colspan="10" class="py-8 text-center text-neutral-600 font-mono">Importing rushing spreadsheet numbers...</td></tr>
+                                <tr><td colspan="10" class="py-8 text-center text-neutral-600 font-mono">Loading data pipeline feeds...</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </section>
 
-            <!-- 3. RECEIVING STATS SECTION -->
             <section class="space-y-4">
                 <div class="flex items-center space-x-3 border-b border-neutral-800 pb-2">
                     <i class="fa-solid fa-hands-football text-red-500 text-lg"></i>
@@ -142,7 +145,7 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                                <tr><td colspan="10" class="py-8 text-center text-neutral-600 font-mono">Importing receiving spreadsheet numbers...</td></tr>
+                                <tr><td colspan="10" class="py-8 text-center text-neutral-600 font-mono">Loading data pipeline feeds...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -150,7 +153,6 @@
             </section>
         </div>
 
-        <!-- ================= DEFENCE UNIT PACKET (Hidden by default) ================= -->
         <div id="wrapper-defense" class="space-y-16 hidden">
             <section class="space-y-4">
                 <div class="flex items-center space-x-3 border-b border-neutral-800 pb-2">
@@ -179,7 +181,7 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                                <tr><td colspan="14" class="py-8 text-center text-neutral-600 font-mono">Importing defensive spreadsheet numbers...</td></tr>
+                                <tr><td colspan="14" class="py-8 text-center text-neutral-600 font-mono">Loading data pipeline feeds...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -189,26 +191,57 @@
 
     </main>
 
-    <!-- FOOTER -->
     <footer class="bg-neutral-950 border-t border-neutral-800 text-neutral-600 py-8 text-center text-xs font-mono mt-24">
         &copy; 2026 Merseyside Nighthawks. Operational Data Feeds Driven by Google Sheets.
     </footer>
 
-    <!-- AUTOMATED DATA PIPELINE & INTERACTION LOGIC -->
     <script>
-        // ⚠️ REPLACE THESE PLACES WITH YOUR UNIQUE PUBLISHED CSV LINKS FROM EACH GOOGLE SHEET TAB:
-        const PASSING_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1956861491&single=true&output=csv";
-        const RUSHING_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=16762642&single=true&output=csv";
-        const RECEIVING_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=0&single=true&output=csv";
-        const DEFENSE_CSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1472903326&single=true&output=csv";
+        // Set the current track year globally
+        let currentYear = "2026";
+
+        // DATA STORE FOR MULTIPLE SEASONS
+        // ⚠️ Paste your 2026 and 2025 Google Sheets CSV output links directly here:
+        const DATA_PIPELINES = {
+            "2025": {
+                passing: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1956861491&single=true&output=csv",
+                rushing: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=16762642&single=true&output=csv",
+                receiving: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=0&single=true&output=csv",
+                defense: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1472903326&single=true&output=csv"
+            },
+            "2026": {
+                // REPLACE these placeholders with your actual 2026 Google Sheet Tab links when ready!
+                passing: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1956861491&single=true&output=csv",
+                rushing: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=16762642&single=true&output=csv",
+                receiving: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=0&single=true&output=csv",
+                defense: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1472903326&single=true&output=csv"
+            }
+        };
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Fetch and draw all 4 categories immediately upon arrival
-            loadSpreadsheetSection(PASSING_CSV, 'table-passing', 11);
-            loadSpreadsheetSection(RUSHING_CSV, 'table-rushing', 10);
-            loadSpreadsheetSection(RECEIVING_CSV, 'table-receiving', 10);
-            loadSpreadsheetSection(DEFENSE_CSV, 'table-defense', 14);
+            // Fetch initialized metrics default configuration
+            renderAllStats();
         });
+
+        // Orchestrates full table renders depending on current selected year environment
+        function renderAllStats() {
+            const datasets = DATA_PIPELINES[currentYear];
+            
+            // Set loading placeholders text before population begins
+            setTableLoading('table-passing', 11);
+            setTableLoading('table-rushing', 10);
+            setTableLoading('table-receiving', 10);
+            setTableLoading('table-defense', 14);
+
+            loadSpreadsheetSection(datasets.passing, 'table-passing', 11);
+            loadSpreadsheetSection(datasets.rushing, 'table-rushing', 10);
+            loadSpreadsheetSection(datasets.receiving, 'table-receiving', 10);
+            loadSpreadsheetSection(datasets.defense, 'table-defense', 14);
+        }
+
+        function setTableLoading(tableId, columnCount) {
+            document.getElementById(tableId).querySelector('tbody').innerHTML = 
+                `<tr><td colspan="${columnCount}" class="py-8 text-center text-neutral-600 font-mono">Importing ${currentYear} spreadsheet numbers...</td></tr>`;
+        }
 
         async function loadSpreadsheetSection(url, tableId, columnCount) {
             try {
@@ -221,26 +254,23 @@
 
                 for (let i = 1; i < lines.length; i++) {
                     const stats = lines[i];
-                    if (!stats[0] || stats[0].trim() === "") continue; // Skip lines without a name
+                    if (!stats[0] || stats[0].trim() === "") continue; 
 
                     const tr = document.createElement('tr');
                     tr.className = "hover:bg-neutral-900/40 transition duration-150 border-b border-neutral-900/60";
 
-                    // Anchor Player Name first
                     let cellsHTML = `<td class="py-3.5 px-4 font-bold text-white whitespace-nowrap">${stats[0].trim()}</td>`;
 
-                    // Generate spreadsheet tracking values sequentially
                     for (let j = 1; j < columnCount; j++) {
                         let dataValue = stats[j] ? stats[j].trim() : '0';
                         let cssAlign = (j === 1) ? 'text-center' : 'text-right';
                         
-                        // Highlight key scoring/turnover impact columns (TDs, Sacks, INTs) across all packets
                         let styleClass = "text-neutral-300 font-mono";
                         if (
-                            (tableId === 'table-passing' && j === 8) || // Passing TDs
-                            (tableId === 'table-rushing' && j === 7) || // Rushing TDs
-                            (tableId === 'table-receiving' && j === 5) || // Receiving TDs
-                            (tableId === 'table-defense' && (j === 5 || j === 9 || j === 12)) // Defense: Sacks, INTs, TDs
+                            (tableId === 'table-passing' && j === 8) || 
+                            (tableId === 'table-rushing' && j === 7) || 
+                            (tableId === 'table-receiving' && j === 5) || 
+                            (tableId === 'table-defense' && (j === 5 || j === 9 || j === 12)) 
                         ) {
                             styleClass = "text-red-500 font-bold font-mono";
                         }
@@ -256,6 +286,13 @@
                 const tbody = document.getElementById(tableId).querySelector('tbody');
                 tbody.innerHTML = `<tr><td colspan="${columnCount}" class="py-6 text-center text-red-500 font-mono font-bold">Error loading metrics. Verify sheet tab publication settings.</td></tr>`;
             }
+        }
+
+        // Dropdown Trigger Action
+        function changeYear(selectedYear) {
+            currentYear = selectedYear;
+            document.getElementById('display-year').textContent = selectedYear;
+            renderAllStats();
         }
 
         // Toggles visibility between the full Offence structures and Defence block
