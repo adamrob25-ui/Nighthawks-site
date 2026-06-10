@@ -1,184 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Gallery | Merseyside Nighthawks</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0a0a0a; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #ef4444; }
-    </style>
-</head>
-<body class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
-
-    <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3 group">
-                <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="w-8 h-8 object-contain">
-                <span class="font-black text-xl tracking-wider uppercase hidden sm:block">
-                    Merseyside <span class="text-red-600">Nighthawks</span>
-                </span>
-            </a>
-            <nav class="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm font-bold uppercase tracking-wider overflow-x-auto whitespace-nowrap scrollbar-none py-1 max-w-[65vw] sm:max-w-none">   
-                <a href="index.html" class="text-red-500 border-b-2 border-red-500 pb-1 shrink-0">Home</a>  
-                <a href="#schedule" class="text-neutral-400 hover:text-white transition shrink-0">Schedule</a>  
-                <a href="#news" class="text-neutral-400 hover:text-white transition shrink-0">News</a>     
-                <a href="gallery.html" class="text-neutral-400 hover:text-white transition shrink-0">Gallery</a>     
-                <a href="#join" class="text-neutral-400 hover:text-white transition shrink-0">Join Us</a>
-            </nav>
-            <a href="stats.html" class="bg-red-600 hover:bg-red-700 text-white font-bold uppercase transition text-center shrink-0 text-[10px] py-1.5 px-2.5 rounded sm:text-xs sm:py-3 sm:px-5 sm:rounded-md">
-                Stats 2025
-            </a>
-        </div>
-    </header>
-
-    <main class="max-w-7xl w-full mx-auto px-6 py-12 flex-grow space-y-8">
-        
-        <div class="border-b border-neutral-900 pb-6 space-y-4">
-            <div>
-                <h1 class="text-4xl font-black uppercase tracking-tight">Media <span class="text-red-500">Gallery</span></h1>
-                <p class="text-neutral-400 text-sm mt-2">Browse club action archives sorted dynamically by year and matchup.</p>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-4 bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">
-                <div class="flex flex-col space-y-1 w-full sm:w-48">
-                    <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Select Season</label>
-                    <select id="season-select" onchange="handleSeasonChange()" class="bg-neutral-950 border border-neutral-800 text-sm rounded p-2 text-white focus:outline-none focus:border-red-600 transition cursor-pointer">
-                        <option value="2025">2025 Season</option>
-                        <option value="2026">2026 Season</option>
-                    </select>
-                </div>
-
-                <div class="flex flex-col space-y-1 flex-grow">
-                    <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Choose Match Day Game Album</label>
-                    <div id="game-filter-container" class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider custom-scrollbar overflow-x-auto pb-1">
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-300">
-            </div>
-
-        <div class="text-center pt-6">
-            <button id="load-more-btn" onclick="loadMorePhotos()" class="px-8 py-3 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-red-600 text-sm font-bold uppercase tracking-wider rounded-md transition duration-300 cursor-pointer hidden">
-                Load Next 12 Images <i class="fa-solid fa-angles-down ml-2 text-xs text-red-500"></i>
-            </button>
-        </div>
-    </main>
-
-    <section class="max-w-7xl w-full mx-auto px-6 py-8">
-        <div class="w-full bg-gradient-to-r from-neutral-900 to-neutral-950 border border-neutral-900 hover:border-red-600/30 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 shadow-xl">
-            <div class="space-y-2 text-center md:text-left">
-                <h3 class="text-xl font-black uppercase tracking-wider text-white">
-                    Partner With The <span class="text-red-500">Nighthawks</span>
-                </h3>
-                <p class="text-neutral-400 text-sm max-w-xl font-medium">
-                    If you wish to sponsor the Nighthawks please contact here. Join our flight and connect your brand with competitive American football on Merseyside.
-                </p>
-            </div>
-            <div class="w-full md:w-auto shrink-0 text-center">
-                <a href="mailto:sponsorship.nighthawks@gmail.com?subject=Merseyside%20Nighthawks%20Sponsorship%20Inquiry" 
-                   class="inline-flex items-center justify-center w-full md:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-xs font-black uppercase tracking-widest rounded-md transition duration-300 shadow-lg hover:shadow-red-900/20 group cursor-pointer">
-                    Contact Us 
-                    <i class="fa-solid fa-envelope ml-2 transform group-hover:translate-x-1 transition duration-300 text-sm"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-red-500 cursor-pointer transition z-55">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <button onclick="navigateLightbox('left')" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-neutral-900/50 border border-neutral-800 rounded-full flex items-center justify-center text-white hover:text-red-500 transition cursor-pointer z-55">
-            <i class="fa-solid fa-chevron-left text-lg"></i>
-        </button>
-        <button onclick="navigateLightbox('right')" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-neutral-900/50 border border-neutral-800 rounded-full flex items-center justify-center text-white hover:text-red-500 transition cursor-pointer z-55">
-            <i class="fa-solid fa-chevron-right text-lg"></i>
-        </button>
-
-        <div class="max-w-5xl max-h-[80vh] px-4 flex flex-col items-center justify-center">
-            <img id="lightbox-img" src="" alt="Enlarged view" class="max-w-full max-h-[72vh] object-contain rounded border border-neutral-900 shadow-2xl">
-            <p id="lightbox-caption" class="text-sm text-neutral-400 tracking-wide mt-4 font-medium text-center"></p>
-        </div>
-    </div>
-
-    <footer class="bg-neutral-950 border-t border-neutral-900 text-neutral-500 py-12">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="space-y-4">
-                <div class="flex items-center space-x-3">
-                    <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain" onerror="this.src='https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500'">
-                    <span class="font-black text-white uppercase tracking-wider">Merseyside Nighthawks</span>
-                </div>
-                <p class="text-sm text-neutral-500 leading-relaxed">Establishing a legacy of competitive American football in Liverpool and the wider Merseyside region.</p>
-            </div>
-            <div>
-                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-4">Quick Links</h4>
-                <div class="flex flex-col space-y-2 text-sm">
-                    <a href="index.html" class="hover:text-red-500 transition">Home Base</a>
-                    <a href="stats.html" class="hover:text-red-500 transition">Roster & Stats</a>
-                </div>
-            </div>
-            <div>
-                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-4">Follow the Flight</h4>
-                <p class="text-sm text-neutral-500 mb-2">Stay connected on our social media platforms.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        const DRIVER_IMAGE_DATABASE = [
-            // --- 2025 SEASON ALBUMS ---
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06580.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06583.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06586.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06589.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06593-Pano.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06596.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06599.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06604.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06606.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06607.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06611.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06613.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06619.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06622.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06627.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06629.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06649.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06665.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06682.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06688.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06697.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06699.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06700.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06706.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06707.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06712.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06717.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06720.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06732.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06736.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06745.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06746.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06757.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06771.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06773.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06778.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06781.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06785.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06786.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06788.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06793.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06795.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06802.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06811.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06812.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06815.jpg", label: "Action Shot" },
-            { year: "2025", game: "Game 8 vs Chester", src: "photos/
+<!DOCTYPE html><html lang="en"><head>    
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Media Gallery | Merseyside Nighthawks</title>    <!-- Stable Tailwind CSS v3 Play CDN -->    
+    <script src="https://cdn.tailwindcss.com"></script>    
+    <!-- FontAwesome for Icons -->    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    <style>        /* Modernized Custom Scrollbars & Utilities */        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }        .custom-scrollbar::-webkit-scrollbar-track { background: #0a0a0a; }        .custom-scrollbar::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #ef4444; }                /* Universal scrollbar-none fix for Cross-Browser Navigation compatibility */        .no-scrollbar::-webkit-scrollbar { display: none; }        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }    </style></head><body class="bg-neutral-950 text-neutral-100 min-h-screen flex flex-col justify-between selection:bg-red-600 selection:text-white">
+    <!-- HEADER & NAVIGATION -->    <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800">        <div class="container mx-auto px-6 py-4 flex justify-between items-center">            <a href="#" class="flex items-center space-x-3 group">                <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="w-8 h-8 object-contain">                <span class="font-black text-xl tracking-wider uppercase hidden sm:block">                    Merseyside <span class="text-red-600">Nighthawks</span>                </span>            </a>            <!-- Fixed class here from scrollbar-none to no-scrollbar -->            <nav class="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm font-bold uppercase tracking-wider overflow-x-auto whitespace-nowrap no-scrollbar py-1 max-w-[65vw] sm:max-w-none">                   <a href="index.html" class="text-red-500 border-b-2 border-red-500 pb-1 shrink-0">Home</a>                  <a href="#schedule" class="text-neutral-400 hover:text-white transition shrink-0">Schedule</a>                  <a href="#news" class="text-neutral-400 hover:text-white transition shrink-0">News</a>                     <a href="gallery.html" class="text-neutral-400 hover:text-white transition shrink-0">Gallery</a>                     <a href="#join" class="text-neutral-400 hover:text-white transition shrink-0">Join Us</a>            </nav>            <a href="stats.html" class="bg-red-600 hover:bg-red-700 text-white font-bold uppercase transition text-center shrink-0 text-[10px] py-1.5 px-2.5 rounded sm:text-xs sm:py-3 sm:px-5 sm:rounded-md">                Stats 2025            </a>        </div>    </header>
+    <!-- MAIN GALLERY INTERFACE -->    <main class="max-w-7xl w-full mx-auto px-6 py-12 flex-grow space-y-8">                <!-- HEADER DESCRIPTION TITLE BLOCK -->        <div class="border-b border-neutral-900 pb-6 space-y-4">            <div>                <h1 class="text-4xl font-black uppercase tracking-tight">Media <span class="text-red-500">Gallery</span></h1>                <p class="text-neutral-400 text-sm mt-2">Browse club action archives sorted dynamically by year and matchup.</p>            </div>                        <!-- TWO-TIER FILTER DASHBOARD -->            <div class="flex flex-col sm:flex-row gap-4 bg-neutral-900/40 p-4 rounded-xl border border-neutral-900">                <div class="flex flex-col space-y-1 w-full sm:w-48">                    <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Select Season</label>                    <select id="season-select" onchange="handleSeasonChange()" class="bg-neutral-950 border border-neutral-800 text-sm rounded p-2 text-white focus:outline-none focus:border-red-600 transition cursor-pointer">                        <option value="2025">2025 Season</option>                        <option value="2026">2026 Season</option>                    </select>                </div>
+                <div class="flex flex-col space-y-1 flex-grow">                    <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Choose Match Day Game Album</label>                    <div id="game-filter-container" class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider custom-scrollbar overflow-x-auto pb-1">                        <!-- Dynamic Buttons map perfectly here now -->                    </div>                </div>            </div>        </div>
+        <!-- PHOTO MATRIX GRID DISPLAY VIEW -->        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-300">            <!-- Images route natively here -->        </div>
+        <!-- LOAD MORE CONTEXT BUTTON TRIGGER -->        <div class="text-center pt-6">            <button id="load-more-btn" onclick="loadMorePhotos()" class="px-8 py-3 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-red-600 text-sm font-bold uppercase tracking-wider rounded-md transition duration-300 cursor-pointer hidden">                Load Next 12 Images <i class="fa-solid fa-angles-down ml-2 text-xs text-red-500"></i>            </button>        </div>    </main>
+    <!-- SPONSORSHIP CALL-TO-ACTION SECTION -->    <section class="max-w-7xl w-full mx-auto px-6 py-8">        <div class="w-full bg-gradient-to-r from-neutral-900 to-neutral-950 border border-neutral-900 hover:border-red-600/30 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-500 shadow-xl">            <div class="space-y-2 text-center md:text-left">                <h3 class="text-xl font-black uppercase tracking-wider text-white">                    Partner With The <span class="text-red-500">Nighthawks</span>                </h3>                <p class="text-neutral-400 text-sm max-w-xl font-medium">                    If you wish to sponsor the Nighthawks please contact here. Join our flight and connect your brand with competitive American football on Merseyside.                </p>            </div>            <div class="w-full md:w-auto shrink-0 text-center">                <a href="mailto:sponsorship.nighthawks@gmail.com?subject=Merseyside%20Nighthawks%20Sponsorship%20Inquiry"                    class="inline-flex items-center justify-center w-full md:w-auto px-6 py-3 bg-red-600 hover:bg-red-700 text-white text-xs font-black uppercase tracking-widest rounded-md transition duration-300 shadow-lg hover:shadow-red-900/20 group cursor-pointer">                    Contact Us                     <i class="fa-solid fa-envelope ml-2 transform group-hover:translate-x-1 transition duration-300 text-sm"></i>                </a>            </div>        </div>    </section>
+    <!-- LIGHTBOX DISPLAY MODAL OVERLAY -->    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300">        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl hover:text-red-500 cursor-pointer transition z-[60]">            <i class="fa-solid fa-xmark"></i>        </button>
+        <button onclick="navigateLightbox('left')" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-neutral-900/50 border border-neutral-800 rounded-full flex items-center justify-center text-white hover:text-red-500 transition cursor-pointer z-[60]">            <i class="fa-solid fa-chevron-left text-lg"></i>        </button>        <button onclick="navigateLightbox('right')" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-12 h-12 bg-neutral-900/50 border border-neutral-800 rounded-full flex items-center justify-center text-white hover:text-red-500 transition cursor-pointer z-[60]">            <i class="fa-solid fa-chevron-right text-lg"></i>        </button>
+        <div class="max-w-5xl max-h-[80vh] px-4 flex flex-col items-center justify-center">            <img id="lightbox-img" src="" alt="Enlarged view" class="max-w-full max-h-[72vh] object-contain rounded border border-neutral-900 shadow-2xl">            <p id="lightbox-caption" class="text-sm text-neutral-400 tracking-wide mt-4 font-medium text-center"></p>        </div>    </div>
+    <!-- SITE FOOTER -->    <footer class="bg-neutral-950 border-t border-neutral-900 text-neutral-500 py-12">        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">            <div class="space-y-4">                <div class="flex items-center space-x-3">                    <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="h-10 w-auto object-contain" onerror="this.src='https://lh3.googleusercontent.com/d/12WTYb3j8ard6iAm_VPRLc4Dkv0iawbms=w500'">                    <span class="font-black text-white uppercase tracking-wider">Merseyside Nighthawks</span>                </div>                <p class="text-sm text-neutral-500 leading-relaxed">Establishing a legacy of competitive American football in Liverpool and the wider Merseyside region.</p>            </div>            <div>                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-4">Quick Links</h4>                <div class="flex flex-col space-y-2 text-sm">                    <a href="index.html" class="hover:text-red-500 transition">Home Base</a>                    <a href="stats.html" class="hover:text-red-500 transition">Roster & Stats</a>                </div>            </div>            <div>                <h4 class="text-white font-bold uppercase tracking-wider text-sm mb-4">Follow the Flight</h4>                <p class="text-sm text-neutral-500 mb-2">Stay connected on our social media platforms.</p>            </div>        </div>    </footer>
+    <!-- INTERACTIVE IMAGERY ENGINE SCRIPTS -->    <script>        const DRIVER_IMAGE_DATABASE = [            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06580.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06583.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06586.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06589.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06593-Pano.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06596.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06599.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06604.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06606.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06607.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06611.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06613.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06619.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06622.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06627.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06629.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06649.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06665.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06682.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06688.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06697.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06699.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06700.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06706.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06707.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06712.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06717.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06720.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06732.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06736.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06745.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06746.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06757.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06771.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06773.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06778.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06781.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06785.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06786.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06788.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06793.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06795.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06802.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06811.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06812.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06815.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06817.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06835.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06841.jpg", label: "Action Shot" },            { year: "2025", game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06844.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00032.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00040.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00047 2.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00049.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00052.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00058.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00069.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00081.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00086.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00094.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00102.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00106.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00116.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00123.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00129.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00135.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00140.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00170.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00184.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC00193.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08749.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08751.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08758.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08763.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08768.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08776.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08785.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08796.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08797.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08806.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08809.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08811.jpg", label: "Action Shot" },            { year: "2025", game: "Game 6 vs Scunthorpe", src: "photos/2025/scunthorpe-game6/DSC08821.jpg", label: "Action Shot" }        ];
+        let currentPhotos = [];        let displayedCount = 0;        const IMAGES_PER_PAGE = 12;        let activeLightboxIndex = 0;
+        window.onload = function() {            handleSeasonChange();        };
+        function handleSeasonChange() {            const selectedYear = document.getElementById('season-select').value;            const dynamicGames = [...new Set(DRIVER_IMAGE_DATABASE.filter(i => i.year === selectedYear).map(i => i.game))];                        const tabContainer = document.getElementById('game-filter-container');            tabContainer.innerHTML = '';
+            if(dynamicGames.length > 0) {                dynamicGames.forEach((gameName, index) => {                    const btn = document.createElement('button');                    btn.textContent = gameName;                    btn.className = `px-4 py-2 rounded transition cursor-pointer shrink-0 border border-neutral-800 ${                        index === 0                         ? 'bg-red-600 text-white border-red-600'                         : 'bg-neutral-950 text-neutral-400 hover:text-white'                    }`;                    btn.onclick = () => filterByGame(gameName, btn);                    tabContainer.appendChild(btn);                });                filterByGame(dynamicGames[0], tabContainer.firstChild);            } else {                document.getElementById('gallery-grid').innerHTML = '<p class="text-neutral-500 col-span-full py-12 text-center">No images found for this season.</p>';                document.getElementById('load-more-btn').classList.add('hidden');            }        }
+        function filterByGame(gameName, activeBtn) {            const siblings = activeBtn.parentElement.children;            for(let btn of siblings) {                btn.className = "px-4 py-2 rounded transition cursor-pointer shrink-0 border border-neutral-800 bg-neutral-950 text-neutral-400 hover:text-white";            }            activeBtn.className = "px-4 py-2 rounded transition cursor-pointer shrink-0 border border-red-600 bg-red-600 text-white";
+            const selectedYear = document.getElementById('season-select').value;            currentPhotos = DRIVER_IMAGE_DATABASE.filter(img => img.year === selectedYear && img.game === gameName);                        displayedCount = 0;            document.getElementById('gallery-grid').innerHTML = '';            loadMorePhotos();        }
+        function loadMorePhotos() {            const grid = document.getElementById('gallery-grid');            const targetEndIndex = Math.min(displayedCount + IMAGES_PER_PAGE, currentPhotos.length);                        for (let i = displayedCount; i < targetEndIndex; i++) {                const item = currentPhotos[i];                const card = document.createElement('div');                card.className = "group relative aspect-video overflow-hidden rounded-xl bg-neutral-900 border border-neutral-900 shadow-lg cursor-pointer transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:border-neutral-800";                card.onclick = () => openLightbox(i);
+                card.innerHTML = `                    <img src="${item.src}" alt="${item.label}" class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105" loading="lazy">                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">                        <span class="text-[10px] uppercase bg-red-600 tracking-wider text-white px-2 py-0.5 rounded font-bold self-start mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">                            ${item.label}                        </span>                        <h4 class="text-sm font-bold text-white tracking-wide truncate transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">                            ${item.game}                        </h4>                        <p class="text-neutral-400 text-xs mt-0.5 font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">                            Season ${item.year}                        </p>                    </div>                `;                grid.appendChild(card);            }
+            displayedCount = targetEndIndex;            const loadMoreBtn = document.getElementById('load-more-btn');            if (displayedCount >= currentPhotos.length) {                loadMoreBtn.classList.add('hidden');            } else {                loadMoreBtn.classList.remove('hidden');            }        }
+        function openLightbox(index) {            activeLightboxIndex = index;            const lightbox = document.getElementById('lightbox');            updateLightboxContent();            lightbox.classList.remove('hidden');            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);            document.body.classList.add('overflow-hidden');        }
+        function closeLightbox() {            const lightbox = document.getElementById('lightbox');            lightbox.classList.add('opacity-0');            setTimeout(() => lightbox.classList.add('hidden'), 300);            document.body.classList.remove('overflow-hidden');        }
+        function navigateLightbox(direction) {            if(direction === 'left') {                activeLightboxIndex = activeLightboxIndex === 0 ? currentPhotos.length - 1 : activeLightboxIndex - 1;            } else {                activeLightboxIndex = activeLightboxIndex === currentPhotos.length - 1 ? 0 : activeLightboxIndex + 1;            }            updateLightboxContent();        }
+        function updateLightboxContent() {            const photo = currentPhotos[activeLightboxIndex];            document.getElementById('lightbox-img').src = photo.src;            document.getElementById('lightbox-caption').textContent = `${photo.game} (${photo.year}) — ${photo.label}`;        }
+        document.addEventListener('keydown', (e) => {            const lightbox = document.getElementById('lightbox');            if (!lightbox.classList.contains('hidden')) {                if (e.key === 'Escape') closeLightbox();                if (e.key === 'ArrowLeft') navigateLightbox('left');                if (e.key === 'ArrowRight') navigateLightbox('right');            }        });    </script></body></html>
