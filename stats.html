@@ -165,7 +165,7 @@
                             <thead>
                                 <tr class="bg-neutral-900 text-neutral-400 text-xs uppercase tracking-wider border-b border-neutral-800">
                                     <th class="py-4 px-4 font-bold text-neutral-200">Name</th>
-                                    <th class="py-4 px-2 text-center">GP</th>
+                                    <th id="th-defense-gp" class="py-4 px-2 text-center">GP</th>
                                     <th class="py-4 px-2 text-right">Tt</th>
                                     <th class="py-4 px-2 text-right">Ta (Solo)</th>
                                     <th class="py-4 px-2 text-right">Ta (Asst)</th>
@@ -181,7 +181,7 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-neutral-900 text-sm font-medium">
-                                <tr><td colspan="14" class="py-8 text-center text-neutral-600 font-mono">Loading data pipeline feeds...</td></tr>
+                                <tr><td colspan="13" class="py-8 text-center text-neutral-600 font-mono">Loading data pipeline feeds...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -196,11 +196,8 @@
     </footer>
 
     <script>
-        // Set the current track year globally
         let currentYear = "2026";
 
-        // DATA STORE FOR MULTIPLE SEASONS
-        // ⚠️ Paste your 2026 and 2025 Google Sheets CSV output links directly here:
         const DATA_PIPELINES = {
             "2025": {
                 passing: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1956861491&single=true&output=csv",
@@ -209,7 +206,6 @@
                 defense: "https://docs.google.com/spreadsheets/d/e/2PACX-1vQd6nxSca9cwgz7Top15YBFzAxJLzVUyoyuhYlpk6s2uy1MMfupQI34TY_vzgYO4lPJLs8Lis4umGZd/pub?gid=1472903326&single=true&output=csv"
             },
             "2026": {
-                // REPLACE these placeholders with your actual 2026 Google Sheet Tab links when ready!
                 passing: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhVA0a04wrUZqq_U6nJ3C2-x5nXEWeH5aNNb2F4s2AM_lGM2waosVoGyyyrP69VbC0-Jea2gnVgt8P/pub?gid=1139547419&single=true&output=csv",
                 rushing: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhVA0a04wrUZqq_U6nJ3C2-x5nXEWeH5aNNb2F4s2AM_lGM2waosVoGyyyrP69VbC0-Jea2gnVgt8P/pub?gid=927370265&single=true&output=csv",
                 receiving: "https://docs.google.com/spreadsheets/d/e/2PACX-1vRhVA0a04wrUZqq_U6nJ3C2-x5nXEWeH5aNNb2F4s2AM_lGM2waosVoGyyyrP69VbC0-Jea2gnVgt8P/pub?gid=0&single=true&output=csv",
@@ -218,24 +214,30 @@
         };
 
         window.addEventListener('DOMContentLoaded', () => {
-            // Fetch initialized metrics default configuration
             renderAllStats();
         });
 
-        // Orchestrates full table renders depending on current selected year environment
         function renderAllStats() {
             const datasets = DATA_PIPELINES[currentYear];
-            
-            // Set loading placeholders text before population begins
+            const hideDefenseGP = (currentYear === "2026");
+
+            // Show or hide the GP header in the Defence table
+            const defenseGpHeader = document.getElementById('th-defense-gp');
+            if (defenseGpHeader) {
+                defenseGpHeader.classList.toggle('hidden', hideDefenseGP);
+            }
+
+            const defenseCols = hideDefenseGP ? 13 : 14;
+
             setTableLoading('table-passing', 11);
             setTableLoading('table-rushing', 10);
             setTableLoading('table-receiving', 10);
-            setTableLoading('table-defense', 14);
+            setTableLoading('table-defense', defenseCols);
 
             loadSpreadsheetSection(datasets.passing, 'table-passing', 11);
             loadSpreadsheetSection(datasets.rushing, 'table-rushing', 10);
             loadSpreadsheetSection(datasets.receiving, 'table-receiving', 10);
-            loadSpreadsheetSection(datasets.defense, 'table-defense', 14);
+            loadSpreadsheetSection(datasets.defense, 'table-defense', 14, hideDefenseGP);
         }
 
         function setTableLoading(tableId, columnCount) {
@@ -243,7 +245,9 @@
                 `<tr><td colspan="${columnCount}" class="py-8 text-center text-neutral-600 font-mono">Importing ${currentYear} spreadsheet numbers...</td></tr>`;
         }
 
-        async function loadSpreadsheetSection(url, tableId, columnCount) {
+        async function loadSpreadsheetSection(url, tableId, csvColumnCount, skipGP = false) {
+            const visibleCols = skipGP ? csvColumnCount - 1 : csvColumnCount;
+
             try {
                 const res = await fetch(url);
                 const rawCsvText = await res.text();
@@ -261,7 +265,10 @@
 
                     let cellsHTML = `<td class="py-3.5 px-4 font-bold text-white whitespace-nowrap">${stats[0].trim()}</td>`;
 
-                    for (let j = 1; j < columnCount; j++) {
+                    for (let j = 1; j < csvColumnCount; j++) {
+                        // Skip GP column (index 1) when hideDefenseGP is active
+                        if (skipGP && j === 1) continue;
+
                         let dataValue = stats[j] ? stats[j].trim() : '0';
                         let cssAlign = (j === 1) ? 'text-center' : 'text-right';
                         
@@ -284,18 +291,16 @@
             } catch (err) {
                 console.error(`Failed to ingest CSV data stream for: ${tableId}`, err);
                 const tbody = document.getElementById(tableId).querySelector('tbody');
-                tbody.innerHTML = `<tr><td colspan="${columnCount}" class="py-6 text-center text-red-500 font-mono font-bold">Error loading metrics. Verify sheet tab publication settings.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="${visibleCols}" class="py-6 text-center text-red-500 font-mono font-bold">Error loading metrics. Verify sheet tab publication settings.</td></tr>`;
             }
         }
 
-        // Dropdown Trigger Action
         function changeYear(selectedYear) {
             currentYear = selectedYear;
             document.getElementById('display-year').textContent = selectedYear;
             renderAllStats();
         }
 
-        // Toggles visibility between the full Offence structures and Defence block
         function switchStats(type) {
             const wrapOffense = document.getElementById('wrapper-offense');
             const wrapDefense = document.getElementById('wrapper-defense');
