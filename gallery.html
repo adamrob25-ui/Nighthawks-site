@@ -13,7 +13,7 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #262626; border-radius: 3px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #ef4444; }
 
-        /* Fix: Completely hides the header desktop navigation scrollbar */
+        /* Completely hides the header navigation scrollbar */
         .no-scrollbar::-webkit-scrollbar { display: none !important; }
         .no-scrollbar { -ms-overflow-style: none !important; scrollbar-width: none !important; }
     </style>
@@ -22,7 +22,7 @@
 
     <header class="sticky top-0 z-50 bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center space-x-3 group">
+            <a href="index.html" class="flex items-center space-x-3 group">
                 <img src="photos/news/logo.jpg" alt="Merseyside Nighthawks Logo" class="w-8 h-8 object-contain">
                 <span class="font-black text-xl tracking-wider uppercase hidden sm:block">
                     Merseyside <span class="text-red-600">Nighthawks</span>
@@ -30,11 +30,11 @@
             </a>
             
             <nav class="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm font-bold uppercase tracking-wider overflow-x-auto whitespace-nowrap no-scrollbar py-1 max-w-[65vw] sm:max-w-none">   
-                <a href="index.html" class="text-red-500 border-b-2 border-red-500 pb-1 shrink-0">Home</a>  
-                <a href="#schedule" class="text-neutral-400 hover:text-white transition shrink-0">Schedule</a>  
-                <a href="#news" class="text-neutral-400 hover:text-white transition shrink-0">News</a>     
-                <a href="gallery.html" class="text-neutral-400 hover:text-white transition shrink-0">Gallery</a>     
-                <a href="#join" class="text-neutral-400 hover:text-white transition shrink-0">Join Us</a>
+                <a href="index.html" class="text-neutral-400 hover:text-white transition shrink-0">Home</a>  
+                <a href="index.html#schedule" class="text-neutral-400 hover:text-white transition shrink-0">Schedule</a>  
+                <a href="index.html#news" class="text-neutral-400 hover:text-white transition shrink-0">News</a>     
+                <a href="gallery.html" class="text-red-500 border-b-2 border-red-500 pb-1 shrink-0">Gallery</a>     
+                <a href="index.html#join" class="text-neutral-400 hover:text-white transition shrink-0">Join Us</a>
             </nav>
 
             <a href="stats.html" class="bg-red-600 hover:bg-red-700 text-white font-bold uppercase transition text-center shrink-0 text-[10px] py-1.5 px-2.5 rounded sm:text-xs sm:py-3 sm:px-5 sm:rounded-md">
@@ -63,17 +63,16 @@
                 <div class="flex flex-col space-y-1 flex-grow">
                     <label class="text-[10px] uppercase tracking-widest font-bold text-neutral-500">Choose Match Day Game Album</label>
                     <div id="game-filter-container" class="flex flex-wrap gap-2 text-xs font-bold uppercase tracking-wider custom-scrollbar overflow-x-auto pb-1">
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div 
-  id="gallery-grid" 
-  class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-3 sm:gap-6 w-full max-w-7xl mx-auto px-4"
->
-  </div>
-
+          id="gallery-grid" 
+          class="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-3 sm:gap-6 w-full max-w-7xl mx-auto px-4"
+        >
+        </div>
 
         <div class="text-center pt-6">
             <button id="load-more-btn" onclick="loadMorePhotos()" class="px-8 py-3 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 hover:border-red-600 text-sm font-bold uppercase tracking-wider rounded-md transition duration-300 cursor-pointer hidden">
@@ -146,7 +145,6 @@
     <script>
   const DRIVER_IMAGE_DATABASE = [
     // --- 2025 SEASON ALBUMS ---
-    // 2025 pic ids
     { year: 2025, game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06580.jpg", label: "Action Shot" },
     { year: 2025, game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06583.jpg", label: "Action Shot" },
     { year: 2025, game: "Game 8 vs Chester", src: "photos/2025/chester-game8/DSC06586.jpg", label: "Action Shot" },
@@ -425,7 +423,6 @@
   function handleSeasonChange() {
     const selectedYear = document.getElementById('season-select').value;
     
-    // Safely parse out the unique game titles matching the selected year
     const dynamicGames = [...new Set(
       DRIVER_IMAGE_DATABASE
         .filter(i => String(i.year) === String(selectedYear))
@@ -448,7 +445,6 @@
         tabContainer.appendChild(btn);
       });
 
-      // Automatically render the first game category found
       filterByGame(dynamicGames[0], tabContainer.firstChild);
     } else {
       document.getElementById('gallery-grid').innerHTML = 
@@ -475,44 +471,42 @@
     loadMorePhotos();
   }
 
- function loadMorePhotos() {
-  const grid = document.getElementById('gallery-grid');
-  const targetEndIndex = Math.min(displayedCount + IMAGES_PER_PAGE, currentPhotos.length);
+  function loadMorePhotos() {
+    const grid = document.getElementById('gallery-grid');
+    const targetEndIndex = Math.min(displayedCount + IMAGES_PER_PAGE, currentPhotos.length);
 
-  for (let i = displayedCount; i < targetEndIndex; i++) {
-    const item = currentPhotos[i];
-    const card = document.createElement('div');
-    
-    // Smooth transitions, GPU acceleration, and mobile-friendly aspect ratios
-    card.className = "group relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-neutral-900 border border-neutral-900 shadow-md cursor-pointer transform transition-all duration-200 hover:-translate-y-1 hover:shadow-xl will-change-transform";
-    
-    card.onclick = () => openLightbox(i);
-    
-    card.innerHTML = `
-      <img 
-        src="${item.src}" 
-        alt="${item.label}" 
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103 object-center" 
-        loading="lazy"
-        decoding="async"
-      >
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-3 pointer-events-none">
-        <span class="text-red-500 text-[10px] font-bold uppercase tracking-wider">${item.label}</span>
-        <h4 class="text-white text-xs font-bold tracking-wide truncate">${item.game}</h4>
-      </div>
-    `;
-    grid.appendChild(card);
+    for (let i = displayedCount; i < targetEndIndex; i++) {
+      const item = currentPhotos[i];
+      const card = document.createElement('div');
+      
+      card.className = "group relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-neutral-900 border border-neutral-900 shadow-md cursor-pointer transform transition-all duration-200 hover:-translate-y-1 hover:shadow-xl will-change-transform";
+      
+      card.onclick = () => openLightbox(i);
+      
+      card.innerHTML = `
+        <img 
+          src="${item.src}" 
+          alt="${item.label}" 
+          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-103 object-center" 
+          loading="lazy"
+          decoding="async"
+        >
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col justify-end p-3 pointer-events-none">
+          <span class="text-red-500 text-[10px] font-bold uppercase tracking-wider">${item.label}</span>
+          <h4 class="text-white text-xs font-bold tracking-wide truncate">${item.game}</h4>
+        </div>
+      `;
+      grid.appendChild(card);
+    }
+
+    displayedCount = targetEndIndex;
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (displayedCount >= currentPhotos.length) {
+      loadMoreBtn.classList.add('hidden');
+    } else {
+      loadMoreBtn.classList.remove('hidden');
+    }
   }
-
-  displayedCount = targetEndIndex;
-  const loadMoreBtn = document.getElementById('load-more-btn');
-  if (displayedCount >= currentPhotos.length) {
-    loadMoreBtn.classList.add('hidden');
-  } else {
-    loadMoreBtn.classList.remove('hidden');
-  }
-}
-
 
   function openLightbox(index) {
     activeLightboxIndex = index;
@@ -556,6 +550,6 @@
       if (e.key === 'ArrowRight') navigateLightbox('right');
     }
   });
-</script>
- 
- 
+    </script>
+</body>
+</html>
